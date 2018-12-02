@@ -5,15 +5,13 @@ import {
     createLeftovertFailure,
     createLeftovertSuccess,
     fetchLeftoversFailure,
-    fetchLeftoversSuccess
+    fetchLeftoversSuccess, fetchMyLeftoversFailure, fetchMyLeftoversSuccess
 } from "../actions/leftovers";
-import * as dt from "../../data/data"
 
 function* fetchLeftovers() {
     try {
         let {data} = yield api.fetchLeftovers();
-        console.log(dt.formatJSON(data));
-        yield put(fetchLeftoversSuccess(dt.formatJSON(data)))
+        yield put(fetchLeftoversSuccess(data))
     } catch (e) {
         yield put(fetchLeftoversFailure(e))
     }
@@ -31,8 +29,19 @@ function* createLeftover(action) {
     }
 }
 
+function* fetchMyLeftovers() {
+    try {
+        const {data} = yield api.fetchMyLeftovers();
+        yield put(fetchMyLeftoversSuccess(data))
+
+    } catch (e) {
+        yield put(fetchMyLeftoversFailure(e))
+    }
+}
+
 
 export function* leftoversWatcher() {
     yield takeEvery(actions.FETCH_LEFTOVERS, fetchLeftovers);
     yield takeEvery(actions.CREATE_LEFTOVER, createLeftover);
+    yield takeEvery(actions.FETCH_MY_LEFTOVERS, fetchMyLeftovers);
 }

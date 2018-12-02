@@ -1,10 +1,10 @@
 import React from 'react';
-import Listings from "./Listings/Listings";
+import ListingsContainer from "./Listings/ListingsContainer";
 
 const Admin = () => {
     return (
         <div>
-            <Listings />
+            <ListingsContainer />
         </div>
     );
 };

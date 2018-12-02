@@ -43,3 +43,25 @@ export const createLeftover = leftover => {
     }
 };
 
+export const fetchMyLeftovers = ()  => {
+    return {
+        type: actions.FETCH_MY_LEFTOVERS
+    }
+};
+
+export const fetchMyLeftoversSuccess = leftovers => {
+    return {
+        type: actions.FETCH_MY_LEFTOVERS_SUCCESS,
+        leftovers
+    }
+};
+
+export const fetchMyLeftoversFailure = (error) => {
+    return {
+        type: actions.FETCH_MY_LEFTOVERS_FAILURE,
+        payload: error
+    }
+};
+
+
+

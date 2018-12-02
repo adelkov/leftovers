@@ -1,14 +1,6 @@
 import * as actions from "./actions"
 
 
-export const setUser = email => {
-    return {
-        type: actions.SET_USER,
-        email
-    }
-};
-
-
 export const loginUser = user => {
     return {
         type: actions.LOGIN_USER,

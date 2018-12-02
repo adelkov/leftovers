@@ -53,23 +53,26 @@ const styles = theme => ({
 });
 
 class Listings extends React.Component {
-    state = {
-        order: 'asc',
-        orderBy: 'calories',
-        selected: [],
-        data: [
-            {id: 2, food: "hús", location: "Budapest", status: "pending"},
-            {id: 3, food: "csirke", location: "Pilisvörösvár", status: "pending"},
-            {id: 4, food: "tégla", location: "Budapest", status: "approved"}
-        ],
-        rows: [
-            { id: 'food', numeric: false, disablePadding: true, label: 'Food offered' },
-            { id: 'location', numeric: false, disablePadding: false, label: 'Location' },
-            { id: 'status', numeric: false, disablePadding: false, label: 'Status' }
-        ],
-        page: 0,
-        rowsPerPage: 5,
-    };
+
+    constructor(state) {
+        super();
+        this.state = {
+            order: 'asc',
+            orderBy: 'calories',
+            selected: [],
+            rows: [
+                { id: 'food', numeric: false, disablePadding: true, label: 'Food offered' },
+                { id: 'location', numeric: false, disablePadding: false, label: 'Location' },
+                { id: 'status', numeric: false, disablePadding: false, label: 'Status' }
+            ],
+            page: 0,
+            rowsPerPage: 5,
+        };
+    }
+
+    componentDidMount() {
+        this.props.fetchLeftovers();
+    }
 
     handleRequestSort = (event, property) => {
         const orderBy = property;
@@ -108,7 +111,6 @@ class Listings extends React.Component {
             );
         }
 
-        console.log(newSelected);
         this.setState({ selected: newSelected });
     };
 
@@ -123,8 +125,9 @@ class Listings extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     render() {
-        const { classes } = this.props;
-        const { data, order, orderBy, selected, rowsPerPage, page, rows } = this.state;
+        const { classes, leftovers : data }  = this.props;
+        const {  order, orderBy, selected, rowsPerPage, page, rows } = this.state;
+
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (

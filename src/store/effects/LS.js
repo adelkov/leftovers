@@ -12,4 +12,4 @@ export const getToken = () => (
 
 export const setEmail = (email) => {
     localStorage.setItem("email", email)
-}
+};

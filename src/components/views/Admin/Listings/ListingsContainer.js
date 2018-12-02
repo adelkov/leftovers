@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import MyListings from "./Listings";
+import Listings from "./Listings";
 import {fetchLeftovers} from "../../../../store/actions/leftovers";
 
 const mapDispatchToProps = (dispatch) => {
@@ -11,10 +11,10 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        leftoverList: state.leftovers.leftoverList
+        leftovers: state.leftovers.leftovers
     };
 };
 
 export default connect(
     mapStateToProps, mapDispatchToProps
-)(MyListings);
+)(Listings);

@@ -1,7 +1,7 @@
 import { takeEvery} from 'redux-saga/effects';
 import * as actions from "../actions/actions"
 import * as api from '../effects/api'
-import {setUser, setEmail} from "../effects/localStorage";
+import {setUser, setEmail} from "../effects/LS";
 import {navigate} from "@reach/router";
 
 
@@ -9,10 +9,12 @@ import {navigate} from "@reach/router";
 function* loginUser(action) {
     try {
         let user = action.user;
+        console.log(user);
         setEmail(user.email);
         const {data} = yield api.loginUser(user);
+        console.log(data);
         setUser(data);
-        navigate("/leftovers")
+        navigate("/my-leftovers")
     } catch (e) {
         console.log(e);
         navigate("/login")

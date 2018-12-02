@@ -26,15 +26,17 @@ class Login extends Component {
         }
     }
 
-    onSubmit = () => {
+    onSubmit = (e) => {
+        e.preventDefault();
         this.props.login(this.state)
     };
 
     onChange = (e) => {
+
         this.setState({
             [e.target.name]: e.target.value
         })
-    }
+    };
 
     render() {
         const {classes} = this.props;
