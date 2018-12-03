@@ -1,11 +1,15 @@
 import React from 'react';
-import ListingsContainer from "./Listings/ListingsContainer";
+import Dashboard from "../../common/Dashboard/Dashboard";
+import adminRoutes from "../../../routes/adminRoutes";
+import {mainListItems} from "../Admin/menuItems/listItems";
 
 const Admin = () => {
     return (
-        <div>
-            <ListingsContainer />
-        </div>
+        <Dashboard
+            title="Admin page"
+            routes={adminRoutes}
+            mainListItems={mainListItems}
+        />
     );
 };
 

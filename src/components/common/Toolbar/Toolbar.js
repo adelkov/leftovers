@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography/Typography";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import SearchIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import {withStyles} from "@material-ui/core";
-import {HomeStyle} from "../../../styles/HomeStyle";
+import {HomeStyle} from "../../../assets/styles/HomeStyle";
 
 
 const sections = [

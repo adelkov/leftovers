@@ -1,4 +1,4 @@
-import backgroundImage from "../assets/img/Screenshot 2018-12-02 at 10.50.24.png"
+import backgroundImage from "../img/Screenshot 2018-12-02 at 10.50.24.png"
 
 export const HomeStyle = theme => ({
     layout: {

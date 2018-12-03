@@ -21,6 +21,21 @@ export const loginUser = user => {
     return axios.post(urls.users+"/login", user)
 };
 
+export const fetchAddresses = () => {
+    const id = storage.getToken();
+    return axios.get(urls.addresses, {
+        params: {filter: {id}}
+    })
+};
+
+export const createAddress = address => {
+    return axios.post(urls.addresses, address)
+};
+
+export const deleteAddress = id => {
+    return axios.delete(urls.addresses, id)
+}
+
 
 
 

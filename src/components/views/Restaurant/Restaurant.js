@@ -1,14 +1,16 @@
 import React from 'react';
-import ShareFoodModalContainer from "./ShareFood/ShareFoodModalContainer";
-import MyListings from "./MyListings/MyListings";
+import Dashboard from "../../common/Dashboard/Dashboard";
+import restaurantRoutes from "../../../routes/restaurantRoutes";
+import {mainListItems} from "./menuItems/listItems";
 
 const Restaurant = () => {
     return (
-        <div>
-            <MyListings />
-            <ShareFoodModalContainer />
-        </div>
+        <Dashboard
+            title="Restaurant page"
+            routes={restaurantRoutes}
+            mainListItems={mainListItems}
+        />
     );
 };
 
-export default (Restaurant);
+export default Restaurant;

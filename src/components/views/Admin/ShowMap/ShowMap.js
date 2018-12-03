@@ -3,7 +3,6 @@
 import React, {Component} from 'react';
 import {GoogleApiWrapper, InfoWindow, Map, Marker} from "google-maps-react";
 import Loader from "../../../common/Loader/Loader";
-import MapControll from "./MapControll/MapControll";
 import PlaceDetail from "./PlaceDetail/PlaceDetail";
 import {compose} from "redux";
 
@@ -149,9 +148,6 @@ class ShowMap extends Component {
 
         return (
             <div>
-                <MapControll
-                    onSelect={this.onSelect}
-                />
                 <Map
                     onReady={this.fetchPlaces}
                     onClick={this.onMapClicked}
@@ -171,18 +167,14 @@ class ShowMap extends Component {
                         />
                     )}
 
-                    {this.state.markers.map(marker => {
-                        return (
-                            <Marker
-                                id={marker.id}
-                                icon={marker.icon}
-                                key={marker.id}
-                                onClick={this.onMarkerClick}
-                                position={{lat: marker.lat, lng: marker.lng}}
-                                name={marker.name}
-                            />
-                        )
-                    })}
+
+                    <Marker
+
+                        onClick={this.onMarkerClick}
+                        position={{lat: 3213, lng: 123123}}
+                        name="juli"
+                    />
+
 
                     <InfoWindow
                         marker={this.state.activeMarker}
