@@ -1,4 +1,5 @@
 import * as actions from '../actions/actions'
+import { NotificationManager} from 'react-notifications';
 
 
 const INITIAL_STATE = {
@@ -14,6 +15,7 @@ const addresses = (state = INITIAL_STATE, action) => {
                 loading: true
             };
         case actions.FETCH_ADDRESSES_FAILURE:
+            NotificationManager.error("error: ", action.e.message);
             return {
                 addresses: [],
                 error: action.e.message,
@@ -26,12 +28,14 @@ const addresses = (state = INITIAL_STATE, action) => {
                 loading: false
             };
         case actions.DELETE_ADDRESS_FAILURE:
+            NotificationManager.error("Error: ", action.e.message);
             return {
                 addresses: action.addresses,
                 error: action.e,
                 loading: false
             };
         case actions.DELETE_ADDRESS_SUCCESS:
+            NotificationManager.info("Delete successful!")
             const addressesAfterDelete = state.addresses.filter(address => address.id !== action.id);
             return {
                 addresses: addressesAfterDelete,
@@ -39,6 +43,7 @@ const addresses = (state = INITIAL_STATE, action) => {
                 loading: false
             };
         case actions.CREATE_ADDRESS_SUCCESS:
+            NotificationManager.success("Address created!")
             const addressesAfterCreate = state.addresses.concat(action.address);
             return {
                 addresses: addressesAfterCreate,

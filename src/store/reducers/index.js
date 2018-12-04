@@ -4,8 +4,9 @@ import leftovers from "./leftovers";
 import addresses from "./addresses";
 
 
+
 export default combineReducers({
     leftovers,
     myLeftovers,
-    addresses
+    addresses,
 })

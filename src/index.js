@@ -1,15 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from "react-redux";
-import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
+import 'react-notifications/lib/notifications.css';
+
+
 import {configStore} from "./store/ConfigStore";
 import App from "./components/App";
+import {NotificationContainer} from "react-notifications";
 
 
 const store = configStore();
 
 ReactDOM.render(
-        <Provider store={store}>
-            <App />
-        </Provider>
+    <Provider store={store}>
+        <div>
+            <NotificationContainer/>
+            <App/>
+        </div>
+    </Provider>
     , document.getElementById('root'));
