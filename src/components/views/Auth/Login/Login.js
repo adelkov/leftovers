@@ -13,6 +13,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import LoginStyle from "../../../../assets/styles/LoginStyle";
+import {compose} from "redux";
+import {withRouter} from "react-router-dom";
 
 
 class Login extends Component {
@@ -40,6 +42,7 @@ class Login extends Component {
 
     render() {
         const {classes} = this.props;
+
 
         return (
             <main className={classes.main}>
@@ -85,4 +88,6 @@ Login.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(LoginStyle)(Login);
+export default compose(
+    withStyles(LoginStyle)
+)(Login)

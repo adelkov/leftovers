@@ -2,23 +2,33 @@ import axios from "axios";
 import {urls} from "../../assets/constants/index";
 import * as storage from "../effects/LS"
 
+const access_token = storage.getToken();
+const id = storage.getId();
+
 export const createLeftover = leftover => {
-    const id = storage.getToken();
     return axios.post(urls.leftovers, {
         ...leftover,
-        userId: id
+        userId: id,
+    }, {
+        params: {access_token},
+
     })
 };
 
+
 export const fetchMyLeftovers = () => {
-    const id = storage.getToken();
     return axios.get(urls.leftovers, {
-        params: {filter: {userId: id}}
+        params: {
+            filter: {userId: id},
+            access_token
+        }
     })
 };
 
 export const fetchLeftovers = () => {
-    return axios.get(urls.leftovers)
+    return axios.get(urls.leftovers, {
+        params: {access_token}
+    })
 };
 
 export const loginUser = user => {
@@ -26,21 +36,31 @@ export const loginUser = user => {
 };
 
 export const fetchAddresses = () => {
-    const id = storage.getToken();
     return axios.get(urls.addresses, {
-        params: {filter: {userId: id}}
+        params: {
+            filter: {userId: id},
+            access_token
+        }
     })
 };
 
 export const createAddress = address => {
-    const id = storage.getToken();
     return axios.post(urls.addresses, {
         location: address.location,
         name: address.name,
         userId: id
+    }, {
+        params: {
+            access_token,
+        }
     })
 };
 
 export const deleteAddress = id => {
-    return axios.delete(urls.addresses +"/"+ id)
+
+    return axios.delete(urls.addresses + "/" + id, {
+        params: {
+            access_token
+        }
+    })
 };

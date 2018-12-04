@@ -17,7 +17,7 @@ export const fetchLeftoversSuccess = (leftovers) => {
 export const fetchLeftoversFailure = (error) => {
     return {
         type: actions.FETCH_LEFTOVERS_FAILURE,
-        payload: error
+        error
     }
 };
 
@@ -29,10 +29,10 @@ export function createLeftoverSuccess(leftover) {
     };
 }
 
-export function createLeftoverFailure(error) {
+export function createLeftoverFailure(e) {
     return {
         type: actions.CREATE_LEFTOVER_FAILURE,
-        payload: error
+        e
     };
 }
 
@@ -56,10 +56,10 @@ export const fetchMyLeftoversSuccess = leftovers => {
     }
 };
 
-export const fetchMyLeftoversFailure = (error) => {
+export const fetchMyLeftoversFailure = (e) => {
     return {
         type: actions.FETCH_MY_LEFTOVERS_FAILURE,
-        payload: error
+        e
     }
 };
 

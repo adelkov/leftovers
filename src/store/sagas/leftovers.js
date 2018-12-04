@@ -21,7 +21,9 @@ function* createLeftover(action) {
     try {
         let leftover = action.leftover;
         const {data} = yield api.createLeftover(leftover);
-        yield put(createLeftoverSuccess(data))
+
+        yield put(createLeftoverSuccess(data));
+
     } catch (e) {
         yield put(createLeftoverFailure(e))
     }

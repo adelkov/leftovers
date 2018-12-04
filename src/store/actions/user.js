@@ -8,10 +8,9 @@ export const loginUser = user => {
     }
 };
 
-export const loginUserSuccess = token => {
+export const loginUserSuccess = () => {
     return {
-        type: actions.LOGIN_USER_SUCCESS,
-        token
+        type: actions.LOGIN_USER_SUCCESS
     }
 };
 

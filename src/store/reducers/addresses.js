@@ -16,7 +16,7 @@ const addresses = (state = INITIAL_STATE, action) => {
         case actions.FETCH_ADDRESSES_FAILURE:
             return {
                 addresses: [],
-                error: action.e,
+                error: action.e.message,
                 loading: false
             };
         case actions.FETCH_ADDRESSES_SUCCESS:

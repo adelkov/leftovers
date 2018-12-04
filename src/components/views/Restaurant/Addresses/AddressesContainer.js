@@ -12,7 +12,9 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        addresses: state.addresses.addresses
+        addresses: state.addresses.addresses,
+        loading: state.addresses.loading,
+        error: state.addresses.error
     };
 };
 

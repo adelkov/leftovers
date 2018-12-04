@@ -14,9 +14,10 @@ const leftovers = (state = INITIAL_STATE, action) => {
                 loading: true
             };
         case actions.FETCH_LEFTOVERS_FAILURE:
+            console.log(action.error.message)
             return {
                 leftovers: [],
-                error: action.error,
+                error: action.error.message,
                 loading: false
             };
         case actions.FETCH_LEFTOVERS_SUCCESS:

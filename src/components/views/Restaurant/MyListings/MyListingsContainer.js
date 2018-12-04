@@ -10,7 +10,9 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        leftovers: state.myLeftovers.myLeftovers
+        leftovers: state.myLeftovers.myLeftovers,
+        loading: state.myLeftovers.loading,
+        error: state.myLeftovers.error,
     };
 };
 
