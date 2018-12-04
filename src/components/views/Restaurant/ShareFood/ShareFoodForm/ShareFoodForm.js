@@ -9,26 +9,20 @@ import Formsy from "formsy-react";
 
 class ShareFoodForm extends Component {
 
-    constructor(props) {
-        super(props);
-        this.disableButton = this.disableButton.bind(this);
-        this.enableButton = this.enableButton.bind(this);
-        this.submit = this.submit.bind(this);
-        this.state = { canSubmit: false };
-    }
+    state = {canSubmit: false};
 
-    disableButton() {
-        this.setState({ canSubmit: false });
-    }
+    disableButton = () => {
+        this.setState({canSubmit: false});
+    };
 
-    enableButton() {
-        this.setState({ canSubmit: true });
-    }
+    enableButton = () => {
+        this.setState({canSubmit: true});
+    };
 
-    submit(model) {
+    submit = (model) => {
         this.props.createLeftover(model);
         this.props.handleClose()
-    }
+    };
 
 
     render() {
@@ -41,8 +35,8 @@ class ShareFoodForm extends Component {
                 aria-labelledby="form-dialog-title"
             >
                 <Formsy onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
-                <DialogTitle id="form-dialog-title">Tell us about the food you're offering</DialogTitle>
-                <DialogContent>
+                    <DialogTitle id="form-dialog-title">Tell us about the food you're offering</DialogTitle>
+                    <DialogContent>
                         <MyInput
                             label="Offered food"
                             name="food"
@@ -57,15 +51,15 @@ class ShareFoodForm extends Component {
                             validationError="Required"
                             required
                         />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Cancel
-                    </Button>
-                    <Button type="submit" disabled={!this.state.canSubmit} color="primary">
-                        Share
-                    </Button>
-                </DialogActions>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Cancel
+                        </Button>
+                        <Button type="submit" disabled={!this.state.canSubmit} color="primary">
+                            Share
+                        </Button>
+                    </DialogActions>
                 </Formsy>
             </Dialog>
         );

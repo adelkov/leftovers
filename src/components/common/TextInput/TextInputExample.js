@@ -3,24 +3,20 @@ import React from 'react';
 import MyInput from './TextInput';
 
 export default class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.disableButton = this.disableButton.bind(this);
-        this.enableButton = this.enableButton.bind(this);
-        this.state = { canSubmit: false };
-    }
 
-    disableButton() {
+    state = { canSubmit: false };
+
+    disableButton = () => {
         this.setState({ canSubmit: false });
-    }
+    };
 
-    enableButton() {
+    enableButton = () => {
         this.setState({ canSubmit: true });
-    }
+    };
 
-    submit(model) {
+    submit = (model) => {
         console.log(model)
-    }
+    };
 
     render() {
         return (

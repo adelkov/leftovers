@@ -8,30 +8,24 @@ import Formsy from "formsy-react";
 import MyInput from "../../../../../common/TextInput/TextInput";
 
 
-
-
 class AddAddressModalForm extends Component {
 
-    constructor(props) {
-        super(props);
-        this.disableButton = this.disableButton.bind(this);
-        this.enableButton = this.enableButton.bind(this);
-        this.submit = this.submit.bind(this);
-        this.state = { canSubmit: false };
-    }
 
-    disableButton() {
-        this.setState({ canSubmit: false });
-    }
+    state = {canSubmit: false};
 
-    enableButton() {
-        this.setState({ canSubmit: true });
-    }
 
-    submit(model) {
+    disableButton = () => {
+        this.setState({canSubmit: false});
+    };
+
+    enableButton = () => {
+        this.setState({canSubmit: true});
+    };
+
+    submit = (model) => {
         this.props.createAddress(model);
         this.props.handleClose()
-    }
+    };
 
 
     render() {

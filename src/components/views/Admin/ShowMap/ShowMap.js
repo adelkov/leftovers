@@ -2,7 +2,6 @@
 
 import React, {Component} from 'react';
 import {GoogleApiWrapper, InfoWindow, Map, Marker} from "google-maps-react";
-import Loader from "../../../common/Loader/Loader";
 import PlaceDetail from "./PlaceDetail/PlaceDetail";
 import {compose} from "redux";
 
@@ -142,8 +141,7 @@ class ShowMap extends Component {
 
         if (!this.state.myPositionMarker) {
             return (
-                <Loader/>
-            )
+                <div>loading</div>)
         }
 
         return (
@@ -190,6 +188,6 @@ class ShowMap extends Component {
 export default compose(
     GoogleApiWrapper({
         apiKey: "AIzaSyC_YLBHJrEc36MdARSyS_qpqWHp8OBkyhA",
-        LoadingContainer: Loader
+        LoadingContainer: ""
     })
 )(ShowMap)

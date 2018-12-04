@@ -21,17 +21,13 @@ import {compose} from "redux";
 import withAsyncData from "../../../../HOCs/withAsyncData";
 
 
-
-
 class Addresses extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            dense: false,
-            secondary: true,
-        };
-    }
+
+    state = {
+        dense: false,
+        secondary: true,
+    };
 
 
     render() {
@@ -73,13 +69,15 @@ class Addresses extends React.Component {
                                         />
                                         <ListItemSecondaryAction>
                                             <IconButton aria-label="Delete">
-                                                <DeleteIcon onClick={()=>{this.props.deleteAddress(address.id)}}/>
+                                                <DeleteIcon onClick={() => {
+                                                    this.props.deleteAddress(address.id)
+                                                }}/>
                                             </IconButton>
                                         </ListItemSecondaryAction>
                                     </ListItem>)
                             })}
                         </List>
-                        <AddAddressModalContainer />
+                        <AddAddressModalContainer/>
                     </div>
                 </Grid>
             </div>

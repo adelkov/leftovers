@@ -11,6 +11,8 @@ import {
 function* fetchLeftovers() {
     try {
         let {data} = yield api.fetchLeftovers();
+        console.log(data)
+
         yield put(fetchLeftoversSuccess(data))
     } catch (e) {
         yield put(fetchLeftoversFailure(e))
@@ -21,7 +23,6 @@ function* createLeftover(action) {
     try {
         let leftover = action.leftover;
         const {data} = yield api.createLeftover(leftover);
-
         yield put(createLeftoverSuccess(data));
 
     } catch (e) {

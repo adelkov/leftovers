@@ -14,19 +14,16 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import LoginStyle from "../../../../assets/styles/LoginStyle";
 import {compose} from "redux";
-import {withRouter} from "react-router-dom";
 
 
 class Login extends Component {
 
 
-    constructor() {
-        super();
-        this.state = {
-            email: "",
-            password: ""
-        }
-    }
+    state = {
+        email: "",
+        password: ""
+    };
+
 
     onSubmit = (e) => {
         e.preventDefault();
@@ -61,7 +58,8 @@ class Login extends Component {
                         </FormControl>
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="password">Password</InputLabel>
-                            <Input name="password" type="password" id="password" onChange={this.onChange} autoComplete="current-password"/>
+                            <Input name="password" type="password" id="password" onChange={this.onChange}
+                                   autoComplete="current-password"/>
                         </FormControl>
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary"/>}

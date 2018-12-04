@@ -1,22 +1,14 @@
 import React from 'react';
-import Paper from "@material-ui/core/Paper/Paper";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAddressBook, faPhone, faStroopwafel} from "@fortawesome/free-solid-svg-icons";
 
 const PageDetail = ({isFetching, place}) => {
-    const postStyle = {
-        padding: 10,
-        backgroundColor: '#1b2832',
-        textDecoration: 'none'
-    };
 
     if (isFetching) {
         return (
             <FontAwesomeIcon spin icon={faStroopwafel}/>
         )
     }
-
-    const missingData = "N/A";
 
     return (
         <div className="container">

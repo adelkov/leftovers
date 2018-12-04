@@ -3,10 +3,7 @@ import {Link} from "@reach/router";
 import {connect} from "react-redux";
 
 
-export const Navbar = ({auth}) => {
-
-
-
+export const Navbar = () => {
 
     return (
         <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
@@ -35,7 +32,7 @@ export const Navbar = ({auth}) => {
             </div>
         </nav>
     )
-}
+};
 
 const mapStateToProps = state => {
     return {
