@@ -4,6 +4,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Person';
 import MapIcon from '@material-ui/icons/List';
+import AddressesIcon from '@material-ui/icons/LocationCity';
 
 import {Link} from "react-router-dom";
 
@@ -11,7 +12,7 @@ import {Link} from "react-router-dom";
 const items = [
     {url: '/restaurant/profile', icon:(<DashboardIcon/>), title: "Profile" },
     {url: '/restaurant/my-leftovers', icon:(<MapIcon/>), title: "Listings" },
-    {url: '/restaurant/else', icon:(<DashboardIcon/>), title: "Something" },
+    {url: '/restaurant/addresses', icon:(<AddressesIcon/>), title: "Addresses" },
 ];
 
 export const mainListItems = (

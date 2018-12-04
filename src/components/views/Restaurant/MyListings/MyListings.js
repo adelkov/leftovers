@@ -10,7 +10,11 @@ import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import EnhancedTableToolbar from "./EnhancedTableToolbar/EnhancedTableToolbar";
 import {EnhancedTableHead} from "./EnhancedTableHead/EnhancedTableHead";
-import ShareFoodModal from "../ShareFood/ShareFoodModal";
+import ShareFoodModalContainer from "../ShareFood/ShareFoodModalContainer";
+import withAsyncData from "../../../../HOCs/withAsyncData";
+import {compose} from "redux";
+import {listingTableStyles} from "../../../../assets/styles/ListingsTableStyle";
+import * as utils from "../../../../utils/tableUtils"
 
 
 
@@ -40,19 +44,6 @@ function getSorting(order, orderBy) {
 
 
 
-const styles = theme => ({
-    root: {
-        width: '100%',
-        marginTop: theme.spacing.unit * 3,
-    },
-    table: {
-        minWidth: 1020,
-    },
-    tableWrapper: {
-        overflowX: 'auto',
-    },
-});
-
 class MyListings extends React.Component {
 
     constructor(state) {
@@ -71,28 +62,7 @@ class MyListings extends React.Component {
         };
     }
 
-    componentDidMount() {
-        this.props.fetchMyLeftovers();
-    }
 
-    handleRequestSort = (event, property) => {
-        const orderBy = property;
-        let order = 'desc';
-
-        if (this.state.orderBy === property && this.state.order === 'desc') {
-            order = 'asc';
-        }
-
-        this.setState({ order, orderBy });
-    };
-
-    handleSelectAllClick = event => {
-        if (event.target.checked) {
-            this.setState(state => ({ selected: state.data.map(n => n.id) }));
-            return;
-        }
-        this.setState({ selected: [] });
-    };
 
     handleClick = (event, id) => {
         const { selected } = this.state;
@@ -141,8 +111,8 @@ class MyListings extends React.Component {
                             numSelected={selected.length}
                             order={order}
                             orderBy={orderBy}
-                            onSelectAllClick={this.handleSelectAllClick}
-                            onRequestSort={this.handleRequestSort}
+                            onSelectAllClick={utils.handleSelectAllClick}
+                            onRequestSort={utils.handleRequestSort}
                             rowCount={data.length}
                         />
                         <TableBody>
@@ -194,7 +164,7 @@ class MyListings extends React.Component {
                     onChangePage={this.handleChangePage}
                     onChangeRowsPerPage={this.handleChangeRowsPerPage}
                 />
-                <ShareFoodModal />
+                <ShareFoodModalContainer />
             </Paper>
         );
     }
@@ -204,4 +174,7 @@ MyListings.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(MyListings);
+export default compose(
+    withStyles(listingTableStyles),
+    withAsyncData
+)(MyListings);

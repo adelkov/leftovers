@@ -10,5 +10,4 @@ export default combineReducers({
     myLeftovers,
     users,
     addresses
-    // toastr: toastrReducer
 })

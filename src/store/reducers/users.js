@@ -4,7 +4,7 @@ const INITIAL_STATE = {
     email: ""
 };
 
-const posts = (state = INITIAL_STATE, action) => {
+const email = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case actions.SET_USER:
             return {email: action.email};
@@ -13,4 +13,4 @@ const posts = (state = INITIAL_STATE, action) => {
     }
 };
 
-export default posts
+export default email

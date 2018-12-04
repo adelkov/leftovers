@@ -22,14 +22,14 @@ export const fetchLeftoversFailure = (error) => {
 };
 
 
-export function createLeftovertSuccess(leftover) {
+export function createLeftoverSuccess(leftover) {
     return {
         type: actions.CREATE_LEFTOVER_SUCCESS,
         leftover
     };
 }
 
-export function createLeftovertFailure(error) {
+export function createLeftoverFailure(error) {
     return {
         type: actions.CREATE_LEFTOVER_FAILURE,
         payload: error

@@ -6,16 +6,16 @@ export const fetchAddresses = () => ({
 });
 
 export const fetchAddressesSuccess = (addresses) => ({
-    type: actions.FETCH_ADDRESSES,
+    type: actions.FETCH_ADDRESSES_SUCCESS,
     addresses
 });
 
 export const fetchAddressesFailure = (e) => ({
-    type: actions.FETCH_ADDRESSES,
+    type: actions.FETCH_ADDRESSES_FAILURE,
     e
 });
 
-export const saveAddress = (address) => ({
+export const createAddress = (address) => ({
     type: actions.CREATE_ADDRESS,
     address
 });
@@ -31,6 +31,7 @@ export const deleteAddressFailure = () => ({
 
 export const deleteAddressSuccess = (id) => ({
     type: actions.DELETE_ADDRESS_SUCCESS,
+    id
 });
 
 export const createAddressSuccess = (address) => ({

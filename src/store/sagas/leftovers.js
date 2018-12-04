@@ -2,8 +2,8 @@ import {put, takeEvery} from 'redux-saga/effects';
 import * as actions from "../actions/actions"
 import * as api from '../effects/api'
 import {
-    createLeftovertFailure,
-    createLeftovertSuccess,
+    createLeftoverFailure,
+    createLeftoverSuccess,
     fetchLeftoversFailure,
     fetchLeftoversSuccess, fetchMyLeftoversFailure, fetchMyLeftoversSuccess
 } from "../actions/leftovers";
@@ -20,12 +20,10 @@ function* fetchLeftovers() {
 function* createLeftover(action) {
     try {
         let leftover = action.leftover;
-        leftover.timestamp = +new Date();
         const {data} = yield api.createLeftover(leftover);
-        leftover.id = data.name;
-        yield put(createLeftovertSuccess(leftover))
+        yield put(createLeftoverSuccess(data))
     } catch (e) {
-        yield put(createLeftovertFailure(e))
+        yield put(createLeftoverFailure(e))
     }
 }
 

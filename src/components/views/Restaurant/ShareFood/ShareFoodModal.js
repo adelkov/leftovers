@@ -19,7 +19,11 @@ export default class ShareFoodModal extends React.Component {
         return (
             <div>
                 <Button fullWidth color="primary" variant="contained" onClick={this.handleClickOpen}>Offer new food</Button>
-                <ShareFoodForm open={this.state.open} handleClose={this.handleClose} />
+                <ShareFoodForm
+                    open={this.state.open}
+                    handleClose={this.handleClose}
+                    createLeftover={this.props.createLeftover}
+                />
             </div>
         );
     }

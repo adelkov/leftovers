@@ -8,16 +8,28 @@ const INITIAL_STATE = {
 const myLeftovers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case actions.FETCH_MY_LEFTOVERS:
-            return  {myLeftovers: [], error: null, loading: true};
+            return  {
+                myLeftovers: [],
+                error: null,
+                loading: true
+            };
         case actions.FETCH_MY_LEFTOVERS_FAILURE:
-            return {myLeftovers: [], error: action.error, loading: false};
+            return {
+                myLeftovers: [],
+                error: action.error,
+                loading: false
+            };
         case actions.FETCH_MY_LEFTOVERS_SUCCESS:
-            return {myLeftovers: action.leftovers, error: null, loading: false};
+            return {
+                myLeftovers: action.leftovers.reverse(),
+                error: null,
+                loading: false
+            };
         case actions.CREATE_LEFTOVER_SUCCESS:
             let leftover = action.leftover;
-            const leftovers = state.myLeftovers.concat(leftover);
+            const myLeftovers = state.myLeftovers.concat(leftover).reverse();
             return  {
-                    leftovers,
+                    myLeftovers,
                     error: null,
                     loading: false
                 };

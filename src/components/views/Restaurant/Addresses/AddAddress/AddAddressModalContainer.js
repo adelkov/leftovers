@@ -1,10 +1,10 @@
 import {connect} from 'react-redux';
-import ShareFoodModal from "./ShareFoodModal";
-import {createLeftover} from "../../../../store/actions/leftovers";
+import AddAddressModal from "./AddAddressModal";
+import {createAddress} from "../../../../../store/actions/addresses";
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createLeftover: food => dispatch(createLeftover(food))
+        createAddress: address => dispatch(createAddress(address))
     };
 };
 
@@ -14,4 +14,4 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps, mapDispatchToProps
-)(ShareFoodModal);
+)(AddAddressModal);

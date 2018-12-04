@@ -1,12 +1,11 @@
-import React from "react";
 import Home from "../components/views/Home/Home";
-import Login from "../components/views/Auth/Login/Login";
 import Restaurant from "../components/views/Restaurant/Restaurant";
 import Admin from "../components/views/Admin/Admin";
+import LoginContainer from "../components/views/Auth/Login/LoginContainer";
 
 const indexRoutes = [
     { path: "/home", component: Home},
-    { path: "/login", component: Login},
+    { path: "/login", component: LoginContainer},
     { path: "/restaurant", component: Restaurant},
     { path: "/admin", component: Admin},
 ];

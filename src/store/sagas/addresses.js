@@ -26,13 +26,12 @@ function* createAddress(action) {
 
 function* deleteAddress(action) {
     try {
-        const {response} = yield api.deleteAddress(action.id);
-        yield put(deleteAddressSuccess(response))
+        yield api.deleteAddress(action.id);
+        yield put(deleteAddressSuccess(action.id))
     } catch (e) {
         yield put(deleteAddressFailure(e))
     }
 }
-
 
 
 export function* addressesWatcher() {

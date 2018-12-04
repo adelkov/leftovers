@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -14,8 +11,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
 import {HomeStyle} from '../../../assets/styles/HomeStyle'
 import Button from "@material-ui/core/Button/Button";
-
-
+import {Link} from "react-router-dom";
 
 
 const featuredPosts = [
@@ -34,15 +30,12 @@ const featuredPosts = [
 ];
 
 
-
-
-
 function Home(props) {
-    const { classes } = props;
+    const {classes} = props;
 
     return (
         <React.Fragment>
-            <CssBaseline />
+            <CssBaseline/>
             <div className={classes.layout}>
 
                 <main>
@@ -55,12 +48,16 @@ function Home(props) {
                                         Leftover food-sharing is caring!
                                     </Typography>
                                     <Typography variant="h5" color="inherit" paragraph>
-                                        Take social responsibility and share your leftover food with those in need. <br/>
-                                        Let us know when and where, and we'll come pick it up and take it to a homeless shelter.
+                                        Take social responsibility and share your leftover food with those in
+                                        need. <br/>
+                                        Let us know when and where, and we'll come pick it up and take it to a homeless
+                                        shelter.
                                     </Typography>
-                                    <Button variant="contained" size="large">
-                                        Sign me up
-                                    </Button>
+                                    <Link to="/login">
+                                        <Button variant="contained" size="large">
+                                            Sign me up
+                                        </Button>
+                                    </Link>
                                 </div>
                             </Grid>
                         </Grid>

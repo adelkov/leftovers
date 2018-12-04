@@ -8,11 +8,23 @@ const INITIAL_STATE = {
 const leftovers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case actions.FETCH_LEFTOVERS:
-            return  {leftovers: [], error: null, loading: true};
+            return {
+                leftovers: [],
+                error: null,
+                loading: true
+            };
         case actions.FETCH_LEFTOVERS_FAILURE:
-            return {leftovers: [], error: action.error, loading: false};
+            return {
+                leftovers: [],
+                error: action.error,
+                loading: false
+            };
         case actions.FETCH_LEFTOVERS_SUCCESS:
-            return {leftovers: action.leftovers, error: null, loading: false};
+            return {
+                leftovers: action.leftovers,
+                error: null,
+                loading: false
+            };
         default:
             return state;
     }

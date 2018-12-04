@@ -10,6 +10,9 @@ import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import EnhancedTableToolbar from "./EnhancedTableToolbar/EnhancedTableToolbar";
 import {EnhancedTableHead} from "./EnhancedTableHead/EnhancedTableHead";
+import {listingTableStyles} from "../../../../assets/styles/ListingsTableStyle";
+import {compose} from "redux";
+import withAsyncData from "../../../../HOCs/withAsyncData";
 
 
 
@@ -38,20 +41,6 @@ function getSorting(order, orderBy) {
 }
 
 
-
-const styles = theme => ({
-    root: {
-        width: '100%',
-        marginTop: theme.spacing.unit * 3,
-    },
-    table: {
-        minWidth: 1020,
-    },
-    tableWrapper: {
-        overflowX: 'auto',
-    },
-});
-
 class Listings extends React.Component {
 
     constructor(state) {
@@ -70,9 +59,6 @@ class Listings extends React.Component {
         };
     }
 
-    componentDidMount() {
-        this.props.fetchLeftovers();
-    }
 
     handleRequestSort = (event, property) => {
         const orderBy = property;
@@ -202,4 +188,7 @@ Listings.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Listings);
+export default compose(
+    withStyles(listingTableStyles),
+    withAsyncData
+)(Listings);

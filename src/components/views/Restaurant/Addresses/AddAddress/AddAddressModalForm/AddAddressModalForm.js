@@ -6,12 +6,15 @@ import DialogActions from "@material-ui/core/DialogActions/DialogActions";
 import Button from "@material-ui/core/Button/Button";
 import Dialog from "@material-ui/core/Dialog/Dialog";
 
-class ShareFoodForm extends Component {
+
+
+
+class AddAddressModalForm extends Component {
 
     constructor() {
         super();
         this.state = {
-            food: "",
+            name: "",
             location: ""
         }
     }
@@ -22,13 +25,11 @@ class ShareFoodForm extends Component {
         })
     };
 
-
     onSubmit = () => {
-
-        this.props.createLeftover();
+        this.props.createAddress(this.state);
         this.props.handleClose()
-
     };
+
 
     render() {
         const {handleClose, open} = this.props;
@@ -39,21 +40,21 @@ class ShareFoodForm extends Component {
                 onClose={handleClose}
                 aria-labelledby="form-dialog-title"
             >
-                <DialogTitle id="form-dialog-title">Tell us about the food you're offering</DialogTitle>
+                <DialogTitle id="form-dialog-title">Add new address</DialogTitle>
                 <DialogContent>
                     <TextField
-                        onChange={this.onChange}
                         value={this.state.name}
-                        name="food"
+                        onChange={this.onChange}
+                        name="name"
                         margin="dense"
-                        id="food"
-                        label="Info about offered food"
+                        id="name"
+                        label="Name this address"
                         type="food"
                         fullWidth
                     />
                     <TextField
+                        value={this.state.location}
                         onChange={this.onChange}
-                        value={this.state.name}
                         name="location"
                         margin="dense"
                         id="location"
@@ -67,13 +68,12 @@ class ShareFoodForm extends Component {
                         Cancel
                     </Button>
                     <Button onClick={this.onSubmit} color="primary">
-                        Share
+                        Add
                     </Button>
                 </DialogActions>
             </Dialog>
         );
     }
-
 }
 
-export default ShareFoodForm;
+export default AddAddressModalForm;

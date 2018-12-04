@@ -9,14 +9,11 @@ import {navigate} from "@reach/router";
 function* loginUser(action) {
     try {
         let user = action.user;
-        console.log(user);
         setEmail(user.email);
         const {data} = yield api.loginUser(user);
-        console.log(data);
         setUser(data);
-        navigate("/my-leftovers")
+        navigate("/restaurant/my-leftovers")
     } catch (e) {
-        console.log(e);
         navigate("/login")
     }
 }
