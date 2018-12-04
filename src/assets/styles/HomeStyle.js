@@ -1,4 +1,3 @@
-import backgroundImage from "../img/Screenshot 2018-12-02 at 10.50.24.png"
 
 export const HomeStyle = theme => ({
     layout: {
@@ -21,8 +20,7 @@ export const HomeStyle = theme => ({
         justifyContent: 'space-between',
     },
     mainFeaturedPost: {
-        backgroundColor: theme.palette.grey[800],
-        backgroundImage: `url(${backgroundImage})`,
+        backgroundColor: 'rgba(100,100,100, 0.4)',
         backgroundPosition: 'center center',
         backgroundSize: 'cover',
         backgroundRepeat: 'repeat',

@@ -38,11 +38,12 @@ class ShowMap extends Component {
 
     fetchPlaces = (mapProps, map) => {
         const {google} = mapProps;
+        var autocomplete = google.maps.places.Autocomplete();
+        console.log(autocomplete);
         this.setState({
             service: new google.maps.places.PlacesService(map)
         })
     };
-
 
     showMe = (position) => {
         this.setState({
@@ -134,7 +135,7 @@ class ShowMap extends Component {
         const style = {
             marginLeft: '10%',
             marginRight: '10%',
-            width: '80%',
+            width: '100%',
             height: '100%',
         };
 
@@ -165,9 +166,7 @@ class ShowMap extends Component {
                         />
                     )}
 
-
                     <Marker
-
                         onClick={this.onMarkerClick}
                         position={{lat: 3213, lng: 123123}}
                         name="juli"

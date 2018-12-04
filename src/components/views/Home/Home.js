@@ -55,7 +55,7 @@ function Home(props) {
                                     </Typography>
                                     <Link to="/login">
                                         <Button variant="contained" size="large">
-                                            Sign me up
+                                            Sign in
                                         </Button>
                                     </Link>
                                 </div>

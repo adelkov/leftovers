@@ -20,6 +20,5 @@ function* loginUser(action) {
 
 export function* usersWatcher() {
     yield takeEvery(actions.LOGIN_USER, loginUser);
-
 }
 

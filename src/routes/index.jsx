@@ -10,6 +10,7 @@ const indexRoutes = [
     { path: "/restaurant", component: Restaurant},
     { path: "/admin", component: Admin},
     { path: "/formsy", component: TextInputExample},
+    { path: "/", component: Home},
 ];
 
 export default indexRoutes;

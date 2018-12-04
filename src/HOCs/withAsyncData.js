@@ -1,5 +1,6 @@
 import React from 'react';
 import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
+import image from "../assets/img/404.png"
 
 const withAsyncData = (WrappedComponent) => {
     class HOC extends React.Component {
@@ -14,7 +15,9 @@ const withAsyncData = (WrappedComponent) => {
             if (loading) {
                 return (<LinearProgress/>)
             } else if (error) {
-                return (<div>Error: {error}</div>)
+                return (<div>
+                    <img width="800" src={image} alt=""/>
+                </div>)
             } else {
                 return (
                     <WrappedComponent
