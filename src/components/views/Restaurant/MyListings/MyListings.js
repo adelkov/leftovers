@@ -14,34 +14,7 @@ import ShareFoodModalContainer from "../ShareFood/ShareFoodModalContainer";
 import withAsyncData from "../../../../HOCs/withAsyncData";
 import {compose} from "redux";
 import {listingTableStyles} from "../../../../assets/styles/ListingsTableStyle";
-import * as utils from "../../../../utils/tableUtils"
-
-
-
-function desc(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function stableSort(array, cmp) {
-    const stabilizedThis = array.map((el, index) => [el, index]);
-    stabilizedThis.sort((a, b) => {
-        const order = cmp(a[0], b[0]);
-        if (order !== 0) return order;
-        return a[1] - b[1];
-    });
-    return stabilizedThis.map(el => el[0]);
-}
-
-function getSorting(order, orderBy) {
-    return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
-}
-
+import {getSorting, stableSort} from "../../../../utils/tableUtils";
 
 
 class MyListings extends React.Component {
@@ -50,19 +23,36 @@ class MyListings extends React.Component {
         super();
         this.state = {
             order: 'asc',
-            orderBy: 'calories',
+            orderBy: 'status',
             selected: [],
             rows: [
                 { id: 'food', numeric: false, disablePadding: true, label: 'Food offered' },
-                { id: 'location', numeric: false, disablePadding: false, label: 'Location' },
-                { id: 'status', numeric: false, disablePadding: false, label: 'Status' }
+                { id: 'location', numeric: false, disablePadding: true, label: 'Location' },
+                { id: 'status', numeric: false, disablePadding: true, label: 'Status' }
             ],
             page: 0,
             rowsPerPage: 5,
         };
     }
 
+    handleRequestSort (event, property) {
+        const orderBy = property;
+        let order = 'desc';
 
+        if (this.state.orderBy === property && this.state.order === 'desc') {
+            order = 'asc';
+        }
+
+        this.setState({ order, orderBy });
+    };
+
+    handleSelectAllClick (event) {
+        if (event.target.checked) {
+            this.setState(state => ({ selected: state.data.map(n => n.id) }));
+            return;
+        }
+        this.setState({ selected: [] });
+    };
 
     handleClick = (event, id) => {
         const { selected } = this.state;
@@ -111,8 +101,8 @@ class MyListings extends React.Component {
                             numSelected={selected.length}
                             order={order}
                             orderBy={orderBy}
-                            onSelectAllClick={utils.handleSelectAllClick}
-                            onRequestSort={utils.handleRequestSort}
+                            onSelectAllClick={this.handleSelectAllClick}
+                            onRequestSort={this.handleRequestSort}
                             rowCount={data.length}
                         />
                         <TableBody>

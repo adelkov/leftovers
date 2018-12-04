@@ -1,18 +1,26 @@
-export const handleRequestSort = (event, property) => {
-    const orderBy = property;
-    let order = 'desc';
 
-    if (this.state.orderBy === property && this.state.order === 'desc') {
-        order = 'asc';
+
+
+function desc(a, b, orderBy) {
+    if (b[orderBy] < a[orderBy]) {
+        return -1;
     }
-
-    this.setState({ order, orderBy });
-};
-
-export const handleSelectAllClick = event => {
-    if (event.target.checked) {
-        this.setState(state => ({ selected: state.data.map(n => n.id) }));
-        return;
+    if (b[orderBy] > a[orderBy]) {
+        return 1;
     }
-    this.setState({ selected: [] });
-};
+    return 0;
+}
+
+export function stableSort(array, cmp) {
+    const stabilizedThis = array.map((el, index) => [el, index]);
+    stabilizedThis.sort((a, b) => {
+        const order = cmp(a[0], b[0]);
+        if (order !== 0) return order;
+        return a[1] - b[1];
+    });
+    return stabilizedThis.map(el => el[0]);
+}
+
+export function getSorting(order, orderBy) {
+    return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
+}

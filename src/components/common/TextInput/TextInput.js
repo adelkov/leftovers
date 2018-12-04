@@ -1,37 +1,37 @@
+import {withFormsy} from 'formsy-react';
 import React from 'react';
-import PropTypes from 'prop-types';
 import TextField from "@material-ui/core/TextField/TextField";
 
+class MyInput extends React.Component {
+    constructor(props) {
+        super(props);
+        this.changeValue = this.changeValue.bind(this);
+    }
 
-const TextInput = ({name, label, onChange, onFocus, placeholder, value, error}) => {
+    changeValue(event) {
+        // setValue() will set the value of the component, which in
+        // turn will validate it and the rest of the form
+        // Important: Don't skip this step. This pattern is required
+        // for Formsy to work.
+        this.props.setValue(event.currentTarget.value);
+    }
 
-    return (
-        <div className="field">
+    render() {
+        // An error message is returned only if the component is invalid
+        const errorMessage = this.props.getErrorMessage();
+
+        return (
             <TextField
+                onChange={this.changeValue}
+                value={this.props.getValue() || ''}
+                margin="dense"
+                label={this.props.label}
                 fullWidth
-                label={label}
-                error={Boolean(error)}
-                helperText={error}
-                variant="outlined"
-                type="text"
-                name={name}
-                className="input"
-                placeholder={placeholder}
-                value={value}
-                onFocus={onFocus}
-                onChange={onChange}/>
-        </div>
-    );
-};
+                error={Boolean(errorMessage)}
+                helperText={errorMessage}
+            />
+        );
+    }
+}
 
-TextInput.propTypes = {
-    name: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired,
-    error: PropTypes.string,
-    placeholder: PropTypes.string,
-    onFocus: PropTypes.func
-};
-
-export default TextInput;
+export default withFormsy(MyInput);

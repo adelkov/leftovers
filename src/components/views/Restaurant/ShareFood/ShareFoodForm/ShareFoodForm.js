@@ -1,34 +1,35 @@
 import React, {Component} from 'react';
 import DialogTitle from "@material-ui/core/DialogTitle/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent/DialogContent";
-import TextField from "@material-ui/core/TextField/TextField";
 import DialogActions from "@material-ui/core/DialogActions/DialogActions";
 import Button from "@material-ui/core/Button/Button";
 import Dialog from "@material-ui/core/Dialog/Dialog";
+import MyInput from "../../../../common/TextInput/TextInput";
+import Formsy from "formsy-react";
 
 class ShareFoodForm extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            food: "",
-            location: ""
-        }
+    constructor(props) {
+        super(props);
+        this.disableButton = this.disableButton.bind(this);
+        this.enableButton = this.enableButton.bind(this);
+        this.submit = this.submit.bind(this);
+        this.state = { canSubmit: false };
     }
 
-    onChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    };
+    disableButton() {
+        this.setState({ canSubmit: false });
+    }
 
+    enableButton() {
+        this.setState({ canSubmit: true });
+    }
 
-    onSubmit = () => {
-
-        this.props.createLeftover();
+    submit(model) {
+        this.props.createLeftover(model);
         this.props.handleClose()
+    }
 
-    };
 
     render() {
         const {handleClose, open} = this.props;
@@ -39,37 +40,33 @@ class ShareFoodForm extends Component {
                 onClose={handleClose}
                 aria-labelledby="form-dialog-title"
             >
+                <Formsy onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
                 <DialogTitle id="form-dialog-title">Tell us about the food you're offering</DialogTitle>
                 <DialogContent>
-                    <TextField
-                        onChange={this.onChange}
-                        value={this.state.name}
-                        name="food"
-                        margin="dense"
-                        id="food"
-                        label="Info about offered food"
-                        type="food"
-                        fullWidth
-                    />
-                    <TextField
-                        onChange={this.onChange}
-                        value={this.state.name}
-                        name="location"
-                        margin="dense"
-                        id="location"
-                        label="Location"
-                        type="location"
-                        fullWidth
-                    />
+                        <MyInput
+                            label="Offered food"
+                            name="food"
+                            validations="isExisty"
+                            validationError="Required"
+                            required
+                        />
+                        <MyInput
+                            label="Location"
+                            name="location"
+                            validations="isExisty"
+                            validationError="Required"
+                            required
+                        />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={this.onSubmit} color="primary">
+                    <Button type="submit" disabled={!this.state.canSubmit} color="primary">
                         Share
                     </Button>
                 </DialogActions>
+                </Formsy>
             </Dialog>
         );
     }

@@ -1,10 +1,11 @@
 export const listingTableStyles = theme => ({
     root: {
-        width: '100%',
+        width: 600,
         marginTop: theme.spacing.unit * 3,
     },
     table: {
-        minWidth: 1020,
+        minWidth: 600,
+        maxWidth: 700
     },
     tableWrapper: {
         overflowX: 'auto',
