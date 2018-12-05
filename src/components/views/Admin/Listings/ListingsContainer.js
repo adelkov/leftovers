@@ -1,11 +1,16 @@
 import {connect} from 'react-redux';
 import Listings from "./Listings";
-import {fetchLeftovers} from "../../../../store/actions/leftovers";
+import {approveListings, fetchLeftovers} from "../../../../store/actions/leftovers";
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchData: () => dispatch(fetchLeftovers())
-    };
+        fetchData: () => dispatch(fetchLeftovers()),
+        onApprove: (listings) => {
+            listings.forEach(listing => {
+                dispatch(approveListings(listing))
+            })
+        }
+    }
 };
 
 const mapStateToProps = (state) => {

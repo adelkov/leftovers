@@ -4,7 +4,7 @@ import {withStyles} from '@material-ui/core/styles';
 import {listingTableStyles} from "../../../../assets/styles/ListingsTableStyle";
 import {compose} from "redux";
 import withAsyncData from "../../../../HOCs/withAsyncData";
-import Table from "../../../common/Table/Table";
+import Table from "../../../common/EnhancedTable/EnhancedTable";
 
 
 const Listings = (props) => {
@@ -20,6 +20,7 @@ const Listings = (props) => {
         <Table
             rows={rows}
             data={props.leftovers}
+            onApprove={props.onApprove}
         />
     );
 
