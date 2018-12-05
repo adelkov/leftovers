@@ -3,63 +3,77 @@ import {urls} from "../../assets/constants/index";
 import * as storage from "../effects/LS"
 
 const access_token = storage.getToken();
-const id = storage.getId();
+const email = storage.getEmail();
 
-export const createLeftover = leftover => {
-    return axios.post(urls.leftovers, {
+export const createLeftover = leftover => (
+    axios.post(urls.leftovers, {
         ...leftover,
-        userId: id,
+        account: email,
     }, {
         params: {access_token},
-
     })
-};
+);
 
 
-export const fetchMyLeftovers = () => {
-    return axios.get(urls.leftovers, {
+export const fetchMyLeftovers = () => (
+    axios.get(urls.leftovers, {
         params: {
-            filter: {userId: id},
+            filter: {where: {account: email}},
             access_token
         }
     })
-};
+);
 
-export const fetchLeftovers = () => {
-    return axios.get(urls.leftovers, {
+export const fetchLeftovers = () => (
+    axios.get(urls.leftovers, {
         params: {access_token}
     })
-};
+);
 
-export const loginUser = user => {
-    return axios.post(urls.users + "/login", user)
-};
+export const loginUser = user => (
+    axios.post(urls.users + "/login", user)
+);
 
-export const fetchAddresses = () => {
-    return axios.get(urls.addresses, {
+export const fetchAddresses = () => (
+    axios.get(urls.addresses, {
         params: {
-            filter: {userId: id},
+            filter: {where: {account: email}},
             access_token
         }
     })
-};
+);
 
-export const createAddress = address => {
-    return axios.post(urls.addresses, {
-        location: address.location,
-        name: address.name,
-        userId: id
+export const createAddress = address => (
+    axios.post(urls.addresses, {
+        ...address,
+        account: email
     }, {
         params: {
             access_token,
         }
     })
-};
+);
 
-export const deleteAddress = id => {
-
-    return axios.delete(urls.addresses + "/" + id, {
+export const deleteAddress = id => (
+    axios.delete(urls.addresses + "/" + id, {
         params: {
+            access_token
+        }
+    })
+);
+
+export const fetchUsers = () => (
+    axios.get(urls.accounts, {
+        params: {
+            access_token
+        }
+    })
+);
+
+export const approveListings = listing => {
+    return axios.put(urls.leftovers, listing, {
+        params: {
+            id: listing.id,
             access_token
         }
     })

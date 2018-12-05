@@ -2,7 +2,7 @@ import * as actions from "./actions"
 
 
 export const fetchAddresses = () => ({
- type: actions.FETCH_ADDRESSES
+    type: actions.FETCH_ADDRESSES
 });
 
 export const fetchAddressesSuccess = (addresses) => ({

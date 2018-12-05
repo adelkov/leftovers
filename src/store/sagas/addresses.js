@@ -4,7 +4,7 @@ import * as api from '../effects/api'
 import {
     createAddressFailure, createAddressSuccess, deleteAddressFailure, deleteAddressSuccess, fetchAddressesFailure, fetchAddressesSuccess,
 } from "../actions/addresses";
-
+import {notify, types} from "../effects/notifications"
 
 
 function* fetchAddresses() {
@@ -20,8 +20,10 @@ function* createAddress(action) {
     try {
         let address = action.address;
         const {data} = yield api.createAddress(address);
+        notify(types.success, "Address created");
         yield put(createAddressSuccess(data))
     } catch (e) {
+        notify(types.error, e.message);
         yield put(createAddressFailure(e))
     }
 }
@@ -29,8 +31,10 @@ function* createAddress(action) {
 function* deleteAddress(action) {
     try {
         yield api.deleteAddress(action.id);
+        notify(types.info, "Adress deleted")
         yield put(deleteAddressSuccess(action.id))
     } catch (e) {
+        notify(types.error, e.message);
         yield put(deleteAddressFailure(e))
     }
 }

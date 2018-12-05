@@ -14,7 +14,6 @@ const leftovers = (state = INITIAL_STATE, action) => {
                 loading: true
             };
         case actions.FETCH_LEFTOVERS_FAILURE:
-            console.log(action.error.message)
             return {
                 leftovers: [],
                 error: action.error.message,
@@ -26,6 +25,24 @@ const leftovers = (state = INITIAL_STATE, action) => {
                 error: null,
                 loading: false
             };
+        case actions.APPROVE_LISTINGS_SUCCESS:
+            const approvedLeftoverIDs = action.leftovers.map(item => item.id);
+            let newLeftovers = state.leftovers
+                .filter(item => {
+                    return !approvedLeftoverIDs.includes(item.id)
+                })
+                .concat(action.leftovers);
+            return  {
+                leftovers: newLeftovers,
+                error: null,
+                loading: false
+            };
+        case actions.APPROVE_LISTINGS_FAILURE:
+
+            return state;
+        case actions.APPROVE_LISTINGS:
+            return state;
+
         default:
             return state;
     }
