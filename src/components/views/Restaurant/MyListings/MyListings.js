@@ -4,22 +4,26 @@ import {withStyles} from '@material-ui/core/styles';
 import {listingTableStyles} from "../../../../assets/styles/ListingsTableStyle";
 import {compose} from "redux";
 import withAsyncData from "../../../../HOCs/withAsyncData";
-import Table from "../../../common/Table/Table";
+import ShareFoodModalContainer from "./ShareFood/ShareFoodModalContainer";
+import SimpleTable from "../../../common/SimpleTable/SimpleTable";
 
 
 const MyListings = (props) => {
 
     const rows = [
-            {id: 'food', numeric: false, disablePadding: true, label: 'Food offered'},
-            {id: 'location', numeric: false, disablePadding: true, label: 'Location'},
-            {id: 'status', numeric: false, disablePadding: true, label: 'Status'}
-            ];
+        {id: 'food', numeric: false, disablePadding: true, label: 'Food offered'},
+        {id: 'location', numeric: false, disablePadding: true, label: 'Location'},
+        {id: 'status', numeric: false, disablePadding: true, label: 'Status'}
+    ];
 
     return (
-        <Table
-            rows={rows}
-            data={props.leftovers}
-        />
+        <>
+            <SimpleTable
+                rows={rows}
+                data={props.leftovers}
+            />
+            <ShareFoodModalContainer/>
+        </>
     );
 
 };

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import ShareFoodModal from "./ShareFoodModal";
-import {createLeftover} from "../../../../store/actions/leftovers";
+import {createLeftover} from "../../../../../store/actions/leftovers";
 
 const mapDispatchToProps = (dispatch) => {
     return {
