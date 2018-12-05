@@ -1,5 +1,6 @@
 import ShowMapContainer from "../components/views/Admin/ShowMap/ShowMapContainer";
 import ListingsContainer from "../components/views/Admin/Listings/ListingsContainer";
+import UsersContainer from "../components/views/Admin/Users/UsersContainer";
 
 const adminRoutes = [
     {
@@ -14,6 +15,12 @@ const adminRoutes = [
         sidebarName: "Map",
         navbarName: "Map",
         component: ShowMapContainer
+    },
+    {
+        path: "/admin/users",
+        sidebarName: "Users",
+        navbarName: "Users",
+        component: UsersContainer
     },
 ];
 
