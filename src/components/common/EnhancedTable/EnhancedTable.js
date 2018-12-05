@@ -123,7 +123,7 @@ class Listings extends React.Component {
                                                 <Checkbox checked={isSelected}/>
                                             </TableCell>
                                             {rows.map(item =>
-                                                (<TableCell numeric key={item.id}>{n[item.id]}</TableCell>)
+                                                (<TableCell key={item.id}>{n[item.id]}</TableCell>)
                                             )}
                                         </TableRow>
                                     );

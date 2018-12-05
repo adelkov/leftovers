@@ -7,10 +7,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
 import {compose} from "redux";
 import {listingTableStyles} from "../../../assets/styles/ListingsTableStyle";
-import EnhancedTableToolbar from "./EnhancedTableToolbar/EnhancedTableToolbar";
 import {EnhancedTableHead} from "./EnhancedTableHead/EnhancedTableHead";
 import {getSorting, stableSort} from "../../../utils/tableUtils";
 
@@ -92,7 +90,6 @@ class Listings extends React.Component {
 
         return (
             <Paper className={classes.root}>
-                <EnhancedTableToolbar onApprove={this.onApprove} numSelected={selected.length}/>
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table} aria-labelledby="tableTitle">
                         <EnhancedTableHead
@@ -119,11 +116,8 @@ class Listings extends React.Component {
                                             key={n.id}
                                             selected={isSelected}
                                         >
-                                            <TableCell padding="checkbox">
-                                                <Checkbox checked={isSelected}/>
-                                            </TableCell>
                                             {rows.map(item =>
-                                                (<TableCell numeric key={item.id}>{n[item.id]}</TableCell>)
+                                                (<TableCell key={item.id}>{n[item.id]}</TableCell>)
                                             )}
                                         </TableRow>
                                     );

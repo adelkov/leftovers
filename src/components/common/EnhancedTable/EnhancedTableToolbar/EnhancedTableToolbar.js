@@ -2,12 +2,11 @@ import Toolbar from "@material-ui/core/Toolbar/Toolbar";
 import Typography from "@material-ui/core/Typography/Typography";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 import IconButton from "@material-ui/core/IconButton/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
+import ApproveIcon from "@material-ui/icons/Add";
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/core";
 import React from "react";
 import classNames from 'classnames';
-import FilterListIcon from '@material-ui/icons/FilterList';
 import {toolbarStyles} from "../../../../assets/styles/TableToolbarStyle";
 
 
@@ -28,24 +27,20 @@ let EnhancedTableToolbar = props => {
                     </Typography>
                 ) : (
                     <Typography variant="h6" id="tableTitle">
-                        My listings
+                        Listings
                     </Typography>
                 )}
             </div>
             <div className={classes.spacer} />
             <div className={classes.actions}>
                 {numSelected > 0 ? (
-                    <Tooltip title="Delete">
+                    <Tooltip title="Delete" onClick={onApprove}>
                         <IconButton aria-label="Delete">
-                            <DeleteIcon onClick ={onApprove} />
+                            <ApproveIcon onClick={onApprove} /> Approve
                         </IconButton>
                     </Tooltip>
                 ) : (
-                    <Tooltip title="Filter list">
-                        <IconButton aria-label="Filter list">
-                            <FilterListIcon />
-                        </IconButton>
-                    </Tooltip>
+                    <div>Select items to approve</div>
                 )}
             </div>
         </Toolbar>
