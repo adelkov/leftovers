@@ -15,12 +15,11 @@ import {EnhancedTableHead} from "./EnhancedTableHead/EnhancedTableHead";
 import {getSorting, stableSort} from "../../../utils/tableUtils";
 
 
-
 class Listings extends React.Component {
 
     state = {
         order: 'asc',
-        orderBy: 'food',
+        orderBy: '',
         selected: [],
         page: 0,
         rowsPerPage: 5,
@@ -34,13 +33,12 @@ class Listings extends React.Component {
         if (this.state.orderBy === property && this.state.order === 'desc') {
             order = 'asc';
         }
-
         this.setState({order, orderBy});
     };
 
     handleSelectAllClick = event => {
         if (event.target.checked) {
-            this.setState(state => ({selected: state.data.map(n => n.id)}));
+            this.setState(() => ({selected: this.props.data.map(n => n.id)}));
             return;
         }
         this.setState({selected: []});
@@ -63,7 +61,6 @@ class Listings extends React.Component {
                 selected.slice(selectedIndex + 1),
             );
         }
-
         this.setState({selected: newSelected});
     };
 
@@ -75,17 +72,27 @@ class Listings extends React.Component {
         this.setState({rowsPerPage: event.target.value});
     };
 
+    onApprove = () => {
+        const toApprove = this.props.data
+            .filter(item => (
+                this.state.selected.includes(item.id)))
+            .map(item => {
+                return Object.assign({}, item, {status: "approved"});
+            });
+        this.props.onApprove(toApprove);
+    };
+
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     render() {
-        const {classes, data, rows} = this.props;
-        const {order, orderBy, selected, rowsPerPage, page} = this.state;
+        const {classes, rows, data} = this.props;
+        const {order, orderBy, selected, rowsPerPage, page } = this.state;
 
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
             <Paper className={classes.root}>
-                <EnhancedTableToolbar numSelected={selected.length}/>
+                <EnhancedTableToolbar onApprove={this.onApprove} numSelected={selected.length}/>
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table} aria-labelledby="tableTitle">
                         <EnhancedTableHead
@@ -151,7 +158,11 @@ class Listings extends React.Component {
 
 Listings.propTypes = {
     classes: PropTypes.object.isRequired,
+    data: PropTypes.arrayOf(Object).isRequired,
+    rows: PropTypes.arrayOf(Object).isRequired,
+    onApprove: PropTypes.func,
 };
+
 
 export default compose(
     withStyles(listingTableStyles)

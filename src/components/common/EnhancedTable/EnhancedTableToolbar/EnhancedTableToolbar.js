@@ -8,12 +8,12 @@ import {withStyles} from "@material-ui/core";
 import React from "react";
 import classNames from 'classnames';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import {toolbarStyles} from "../../../../../assets/styles/TableToolbarStyle";
+import {toolbarStyles} from "../../../../assets/styles/TableToolbarStyle";
 
 
 
 let EnhancedTableToolbar = props => {
-    const { numSelected, classes } = props;
+    const { numSelected, classes, onApprove } = props;
 
     return (
         <Toolbar
@@ -37,7 +37,7 @@ let EnhancedTableToolbar = props => {
                 {numSelected > 0 ? (
                     <Tooltip title="Delete">
                         <IconButton aria-label="Delete">
-                            <DeleteIcon />
+                            <DeleteIcon onClick ={onApprove} />
                         </IconButton>
                     </Tooltip>
                 ) : (
