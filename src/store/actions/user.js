@@ -10,7 +10,6 @@ export const loginUserSuccess = () => ({
     type: actions.LOGIN_USER_SUCCESS
 });
 
-
 export const loginUserFailure = error => ({
     type: actions.LOGIN_USER_SUCCESS,
     error

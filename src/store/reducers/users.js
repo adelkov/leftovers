@@ -27,6 +27,7 @@ const addresses = (state = INITIAL_STATE, action) => {
                 error: null,
                 loading: false
             };
+
         default:
             return state;
     }

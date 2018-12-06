@@ -4,6 +4,7 @@ import * as api from '../effects/api'
 import {setUser, setEmail, clearUser} from "../effects/LS";
 import history from "../../utils/history"
 import {fetchUsersFailure, fetchUsersSuccess, logoutUserFailure, logoutUserSuccess} from "../actions/user";
+import {notify, types} from "../effects/notifications"
 
 
 function* loginUser(action) {
@@ -14,6 +15,7 @@ function* loginUser(action) {
         setUser(data);
         history.push("/restaurant")
     } catch (e) {
+        notify(types.error, "Login failed: Invalid credentials");
         history.push("/login")
     }
 }
@@ -32,6 +34,7 @@ function* logoutUser() {
         yield api.logoutUser();
         clearUser();
         history.push("/login");
+        notify("success", "You have logged out.");
         yield put(logoutUserSuccess());
     } catch (e) {
         yield put(logoutUserFailure(e))
