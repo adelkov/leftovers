@@ -30,3 +30,18 @@ export const fetchUsersFailure = error => ({
     type: actions.FETCH_USERS_FAILURE,
     error
 });
+
+export const logoutUser = () => ({
+    type: actions.LOGOUT_USER
+});
+
+export const logoutUserSuccess = () => ({
+    type: actions.LOGIN_USER_SUCCESS
+});
+
+export const logoutUserFailure = error => ({
+    type: actions.LOGIN_USER_FAILURE,
+    error
+});
+
+

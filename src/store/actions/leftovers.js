@@ -55,9 +55,9 @@ export const approveListingsFailure = error => ({
     error
 });
 
-export const approveListingsSuccess = leftovers => ({
+export const approveListingsSuccess = leftover => ({
     type: actions.APPROVE_LISTINGS_SUCCESS,
-    leftovers
+    leftover
 });
 
 

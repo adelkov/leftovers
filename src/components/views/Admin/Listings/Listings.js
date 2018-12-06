@@ -23,7 +23,6 @@ const Listings = (props) => {
             onApprove={props.onApprove}
         />
     );
-
 };
 
 Listings.propTypes = {

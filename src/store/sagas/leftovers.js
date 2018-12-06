@@ -47,9 +47,9 @@ function* fetchMyLeftovers() {
 
 function* approveListings(action) {
     try {
-        yield  api.approveListings(action.listing);
+        const {data} = yield  api.approveListings(action.listing);
         notify(types.success, "Leftover approved");
-        yield put(approveListingsSuccess(action.listings))
+        yield put(approveListingsSuccess(data))
     } catch (error) {
         notify(types.error, error.message);
         yield put(approveListingsFailure(error))

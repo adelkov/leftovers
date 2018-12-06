@@ -13,11 +13,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import { Switch, Route, Redirect } from "react-router-dom";
 import {dashboardStyle} from "../../../assets/styles/DashboardStyle";
-
-
 
 
 
@@ -32,6 +29,10 @@ class Dashboard extends React.Component {
 
     handleDrawerClose = () => {
         this.setState({ open: false });
+    };
+
+    logout = () => {
+        this.props.logoutUser();
     };
 
     render() {
@@ -65,9 +66,9 @@ class Dashboard extends React.Component {
                         >
                             {title}
                         </Typography>
-                        <IconButton color="inherit">
+                        <IconButton color="inherit" onClick={this.logout}>
                             <Badge badgeContent={4} color="secondary">
-                                <NotificationsIcon />
+                                Logout
                             </Badge>
                         </IconButton>
                     </Toolbar>

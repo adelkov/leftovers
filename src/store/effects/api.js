@@ -34,6 +34,13 @@ export const loginUser = user => (
     axios.post(urls.users + "/login", user)
 );
 
+export const logoutUser = () => (
+    axios.post(urls.users + "/logout",{},  {
+        params: {
+            access_token
+        }}
+));
+
 export const fetchAddresses = () => (
     axios.get(urls.addresses, {
         params: {

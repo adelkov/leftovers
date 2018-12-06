@@ -4,7 +4,7 @@ export const setUser = (user) => {
 };
 
 export const clearUser = () => {
-    localStorage.setItem("id_token", "");
+    localStorage.setItem("token", "");
 };
 
 export const getId = () => (

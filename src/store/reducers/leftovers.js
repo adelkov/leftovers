@@ -26,12 +26,11 @@ const leftovers = (state = INITIAL_STATE, action) => {
                 loading: false
             };
         case actions.APPROVE_LISTINGS_SUCCESS:
-            const approvedLeftoverIDs = action.leftovers.map(item => item.id);
-            let newLeftovers = state.leftovers
-                .filter(item => {
-                    return !approvedLeftoverIDs.includes(item.id)
-                })
-                .concat(action.leftovers);
+            const newLeftovers = state.leftovers.map(leftover=> {
+                return leftover.id === action.leftover.id ?
+                    action.leftover :
+                    leftover;
+            });
             return  {
                 leftovers: newLeftovers,
                 error: null,

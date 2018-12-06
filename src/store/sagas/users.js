@@ -1,9 +1,9 @@
 import {put, takeEvery} from 'redux-saga/effects';
 import * as actions from "../actions/actions"
 import * as api from '../effects/api'
-import {setUser, setEmail} from "../effects/LS";
+import {setUser, setEmail, clearUser} from "../effects/LS";
 import history from "../../utils/history"
-import {fetchUsersFailure, fetchUsersSuccess} from "../actions/user";
+import {fetchUsersFailure, fetchUsersSuccess, logoutUserFailure, logoutUserSuccess} from "../actions/user";
 
 
 function* loginUser(action) {
@@ -27,9 +27,21 @@ function* fetchUsers() {
     }
 }
 
+function* logoutUser() {
+    try {
+        yield api.logoutUser();
+        clearUser();
+        history.push("/login");
+        yield put(logoutUserSuccess());
+    } catch (e) {
+        yield put(logoutUserFailure(e))
+    }
+}
+
 
 export function* usersWatcher() {
     yield takeEvery(actions.LOGIN_USER, loginUser);
     yield takeEvery(actions.FETCH_USERS, fetchUsers);
+    yield takeEvery(actions.LOGOUT_USER, logoutUser);
 }
 
