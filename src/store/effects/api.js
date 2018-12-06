@@ -2,15 +2,13 @@ import axios from "axios";
 import {urls} from "../../assets/constants/index";
 import * as storage from "../effects/LS"
 
-const access_token = storage.getToken();
-const email = storage.getEmail();
 
 export const createLeftover = leftover => (
     axios.post(urls.leftovers, {
         ...leftover,
-        account: email,
+        account: storage.getEmail(),
     }, {
-        params: {access_token},
+        params: {access_token: storage.getToken()},
     })
 );
 
@@ -18,15 +16,15 @@ export const createLeftover = leftover => (
 export const fetchMyLeftovers = () => (
     axios.get(urls.leftovers, {
         params: {
-            filter: {where: {account: email}},
-            access_token
+            filter: {where: {account: storage.getEmail()}},
+            access_token: storage.getToken()
         }
     })
 );
 
 export const fetchLeftovers = () => (
     axios.get(urls.leftovers, {
-        params: {access_token}
+        params: {access_token: storage.getToken()}
     })
 );
 
@@ -37,15 +35,15 @@ export const loginUser = user => (
 export const logoutUser = () => (
     axios.post(urls.users + "/logout",{},  {
         params: {
-            access_token
+            access_token: storage.getToken()
         }}
 ));
 
 export const fetchAddresses = () => (
     axios.get(urls.addresses, {
         params: {
-            filter: {where: {account: email}},
-            access_token
+            filter: {where: {account: storage.getEmail()}},
+            access_token: storage.getToken()
         }
     })
 );
@@ -53,10 +51,10 @@ export const fetchAddresses = () => (
 export const createAddress = address => (
     axios.post(urls.addresses, {
         ...address,
-        account: email
+        account: storage.getEmail()
     }, {
         params: {
-            access_token,
+            access_token: storage.getToken(),
         }
     })
 );
@@ -64,7 +62,7 @@ export const createAddress = address => (
 export const deleteAddress = id => (
     axios.delete(urls.addresses + "/" + id, {
         params: {
-            access_token
+            access_token: storage.getToken()
         }
     })
 );
@@ -72,7 +70,7 @@ export const deleteAddress = id => (
 export const fetchUsers = () => (
     axios.get(urls.accounts, {
         params: {
-            access_token
+            access_token: storage.getToken()
         }
     })
 );
@@ -81,7 +79,7 @@ export const approveListings = listing => {
     return axios.put(urls.leftovers, listing, {
         params: {
             id: listing.id,
-            access_token
+            access_token: storage.getToken()
         }
     })
 };
