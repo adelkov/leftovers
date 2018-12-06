@@ -57,7 +57,7 @@ class ShareFoodForm extends Component {
                             Cancel
                         </Button>
                         <Button type="submit" disabled={!this.state.canSubmit} color="primary">
-                            Share
+                            Share food
                         </Button>
                     </DialogActions>
                 </Formsy>
