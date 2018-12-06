@@ -31,7 +31,7 @@ function* createAddress(action) {
 function* deleteAddress(action) {
     try {
         yield api.deleteAddress(action.id);
-        notify(types.info, "Adress deleted")
+        notify(types.info, "Address deleted")
         yield put(deleteAddressSuccess(action.id))
     } catch (e) {
         notify(types.error, e.message);

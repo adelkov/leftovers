@@ -83,3 +83,10 @@ export const approveListings = listing => {
         }
     })
 };
+
+
+export const isAuthenticated = () => (
+    axios.get(urls.leftovers, {
+        params: {access_token: storage.getToken()}
+    })
+);

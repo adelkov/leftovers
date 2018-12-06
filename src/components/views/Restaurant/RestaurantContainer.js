@@ -4,7 +4,7 @@ import Restaurant from "./Restaurant";
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        logoutUser: ()=>dispatch(logoutUser())
+        logoutUser: () => dispatch(logoutUser())
     };
 };
 
@@ -14,4 +14,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps, mapDispatchToProps
-)(Restaurant);
+)(Restaurant)
+;
