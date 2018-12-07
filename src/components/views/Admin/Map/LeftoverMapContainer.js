@@ -1,8 +1,8 @@
 import React from "react";
 import LeftoverMap from "./LeftoverMap";
-import LocationSearchInput from "./LocationSearchInput";
+import {geocodeByAddress, getLatLng} from "react-places-autocomplete";
 
-export default class LeftoverMapContainer extends React.Component {
+class LeftoverMapContainer extends React.Component {
 
     leftovers = [
         {uid: 1, lat: 47.507354, lon: 19.044378299999998},
@@ -11,21 +11,20 @@ export default class LeftoverMapContainer extends React.Component {
     ];
 
     render() {
+
+        geocodeByAddress("Budapest")
+            .then(results => getLatLng(results[0]))
+            .then(latLng => console.log('Success', latLng))
+            .catch(error => console.error('Error', error));
         return (
-            <>
-                <LeftoverMap
-                    leftovers={this.leftovers}
-                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyC_YLBHJrEc36MdARSyS_qpqWHp8OBkyhA&v=3.exp&libraries=geometry,drawing,places`}
-                    loadingElement={<div style={{height: `100%`}}/>}
-                    containerElement={<div style={{height: `600px`, width: `600px`}}/>}
-                    mapElement={<div style={{height: `100%`}}/>}
-                />
-                <LocationSearchInput
-                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyC_YLBHJrEc36MdARSyS_qpqWHp8OBkyhA&v=3.exp&libraries=geometry,drawing,places`}
-                    loadingElement={<div style={{height: `100%`}}/>}
-                    containerElement={<div style={{height: `600px`, width: `600px`}}/>}
-                />
-            </>
+            <LeftoverMap
+                leftovers={this.leftovers}
+                loadingElement={<div style={{height: `100%`}}/>}
+                containerElement={<div style={{height: `600px`, width: `600px`}}/>}
+                mapElement={<div style={{height: `100%`}}/>}
+            />
         );
     }
 }
+
+export default LeftoverMapContainer;

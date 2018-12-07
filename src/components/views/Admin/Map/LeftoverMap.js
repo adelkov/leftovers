@@ -27,6 +27,5 @@ const LeftoverMap = ({leftovers}) => {
 
 
 export default compose(
-    withScriptjs,
     withGoogleMap
 )(LeftoverMap);

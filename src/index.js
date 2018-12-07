@@ -8,6 +8,7 @@ import './assets/styles/index.css'
 import {configStore} from "./store/ConfigStore";
 import App from "./components/App";
 import {NotificationContainer} from "react-notifications";
+import LeftoverMapContainer from "./components/views/Admin/Map/LeftoverMapContainer";
 
 
 const store = configStore();
@@ -16,7 +17,10 @@ ReactDOM.render(
     <Provider store={store}>
         <div>
             <NotificationContainer/>
-            <App/>
+            <App
+                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyC_YLBHJrEc36MdARSyS_qpqWHp8OBkyhA&v=3.exp&libraries=geometry,drawing,places`}
+                loadingElement={<div style={{height: `100%`}}/>}
+            />
         </div>
     </Provider>
     , document.getElementById('root'));

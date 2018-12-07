@@ -29,9 +29,8 @@ class LocationInput extends React.Component {
 
     handleSelect = address => {
         this.setState({address}, ()=>{
-            this.changeValue()
+            this.changeValue();
         })
-
     };
 
     render() {
@@ -50,11 +49,11 @@ class LocationInput extends React.Component {
                             margin="dense"
                             variant="outlined"
                             {...getInputProps({
-                                placeholder: 'Search Places ...',
+                                placeholder: 'Address...',
                                 className: 'location-search-input',
                             })}
                         />
-                        <div className="autocomplete-dropdown-container">
+                        <Paper className="autocomplete-dropdown-container">
                             {loading && <div>Loading...</div>}
                             {suggestions.map(suggestion => {
                                 const className = suggestion.active
@@ -62,20 +61,20 @@ class LocationInput extends React.Component {
                                     : 'suggestion-item';
                                 // inline style for demonstration purpose
                                 const style = suggestion.active
-                                    ? {backgroundColor: '#fafafa', cursor: 'pointer'}
+                                    ? {backgroundColor: '#99acc2', cursor: 'pointer'}
                                     : {backgroundColor: '#ffffff', cursor: 'pointer'};
                                 return (
-                                    <Paper
+                                    <div
                                         {...getSuggestionItemProps(suggestion, {
                                             className,
                                             style,
                                         })}
                                     >
-                                        <span>{suggestion.description}</span>
-                                    </Paper>
+                                        {suggestion.description}
+                                    </div>
                                 );
                             })}
-                        </div>
+                        </Paper>
                     </div>
                 )}
             </PlacesAutocomplete>
@@ -83,7 +82,4 @@ class LocationInput extends React.Component {
     }
 }
 
-export default compose(
-    withFormsy,
-    withScriptjs
-)(LocationInput);
+export default withFormsy(LocationInput);

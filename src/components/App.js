@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import indexRoutes from "../routes";
 import {Route, Router, Switch} from "react-router-dom";
 import history from '../utils/history'
+import {withScriptjs} from "react-google-maps";
 
 
 
@@ -19,4 +20,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default withScriptjs(App);

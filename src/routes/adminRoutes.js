@@ -1,6 +1,7 @@
-import ShowMapContainer from "../components/views/Admin/ShowMap/ShowMapContainer";
 import ListingsContainer from "../components/views/Admin/Listings/ListingsContainer";
 import UsersContainer from "../components/views/Admin/Users/UsersContainer";
+import React from "react";
+import LeftoverMapContainer from "../components/views/Admin/Map/LeftoverMapContainer";
 
 const adminRoutes = [
     {
@@ -14,7 +15,7 @@ const adminRoutes = [
         path: "/admin/map",
         sidebarName: "Map",
         navbarName: "Map",
-        component: ShowMapContainer
+        component: LeftoverMapContainer
     },
     {
         path: "/admin/users",
