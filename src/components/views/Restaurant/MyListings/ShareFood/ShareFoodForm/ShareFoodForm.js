@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button/Button";
 import Dialog from "@material-ui/core/Dialog/Dialog";
 import MyInput from "../../../../../common/TextInput/TextInput";
 import Formsy from "formsy-react";
+import LocationInput from "../../../../../common/LocationInput/LocationInput";
 
 class ShareFoodForm extends Component {
 
@@ -44,7 +45,10 @@ class ShareFoodForm extends Component {
                             validationError="Required"
                             required
                         />
-                        <MyInput
+                        <LocationInput
+                            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyC_YLBHJrEc36MdARSyS_qpqWHp8OBkyhA&v=3.exp&libraries=geometry,drawing,places`}
+                            loadingElement={<div style={{height: `100%`}}/>}
+                            containerElement={<div style={{height: `600px`, width: `600px`}}/>}
                             label="Location"
                             name="location"
                             validations="isExisty"

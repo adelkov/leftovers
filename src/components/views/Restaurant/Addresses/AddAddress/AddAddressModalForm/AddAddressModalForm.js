@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button/Button";
 import Dialog from "@material-ui/core/Dialog/Dialog";
 import Formsy from "formsy-react";
 import MyInput from "../../../../../common/TextInput/TextInput";
+import LocationInput from "../../../../../common/LocationInput/LocationInput";
 
 
 class AddAddressModalForm extends Component {
@@ -23,6 +24,7 @@ class AddAddressModalForm extends Component {
     };
 
     submit = (model) => {
+        console.log(model)
         this.props.createAddress(model);
         this.props.handleClose()
     };
@@ -47,7 +49,10 @@ class AddAddressModalForm extends Component {
                             validationError="Required"
                             required
                         />
-                        <MyInput
+                        <LocationInput
+                            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyC_YLBHJrEc36MdARSyS_qpqWHp8OBkyhA&v=3.exp&libraries=geometry,drawing,places`}
+                            loadingElement={<div style={{height: `100%`}}/>}
+                            containerElement={<div style={{height: `600px`, width: `600px`}}/>}
                             label="Address"
                             name="location"
                             validations="isExisty"
@@ -60,7 +65,7 @@ class AddAddressModalForm extends Component {
                             Cancel
                         </Button>
                         <Button type="submit" disabled={!this.state.canSubmit} color="primary">
-                            Share
+                            Add new address
                         </Button>
                     </DialogActions>
                 </Formsy>
