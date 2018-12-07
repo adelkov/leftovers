@@ -18,31 +18,20 @@ const withAuth = (WrappedComponent) => {
                         status: response.status
                     })
                 })
-                .catch(e => {
+                .catch(() => {
                     history.push("/login");
-                    notify(types.error, "Authentication required.");
+                    notify(types.error, "Authentication failed.");
                 })
         };
 
         render() {
-            switch (this.state.status) {
-                case "":
-                    return (<>
-                        Authenticating...
-                        <LinearProgress/>
-                    </>);
-                case 200:
-                    return (<WrappedComponent
-                        {...this.props}
-                    />);
-                default:
-                    return (
-                        <>
-                            Authenticating...
-                            <LinearProgress/>
-                        </>
-                    );
-            }
+            return this.state.status === 200 ?
+                (<WrappedComponent
+                    {...this.props}/>) :
+                (<>
+                    Authenticating...
+                    <LinearProgress/>
+                </>)
         }
     }
 
