@@ -1,5 +1,6 @@
 import React from "react";
 import { Marker } from "react-google-maps";
+import MarkerIcon from "@material-ui/icons/Fastfood"
 
 export default class LeftoverMarker extends React.Component {
 
@@ -7,6 +8,7 @@ export default class LeftoverMarker extends React.Component {
         return(
             <Marker
                 position={this.props.location}
+                icon={MarkerIcon}
             >
             </Marker>
         );

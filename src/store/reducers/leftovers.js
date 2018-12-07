@@ -37,11 +37,16 @@ const leftovers = (state = INITIAL_STATE, action) => {
                 loading: false
             };
         case actions.APPROVE_LISTINGS_FAILURE:
-
             return state;
         case actions.APPROVE_LISTINGS:
             return state;
-
+        case actions.DELETE_LEFTOVER_SUCCESS:
+            const leftoversAfterDelete = state.leftovers.filter(item=>item.id !== action.id);
+            return {
+                leftovers: leftoversAfterDelete,
+                error: null,
+                loading: false
+            };
         default:
             return state;
     }

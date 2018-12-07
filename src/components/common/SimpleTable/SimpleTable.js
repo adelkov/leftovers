@@ -7,7 +7,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import {compose} from "redux";
 import {listingTableStyles} from "../../../assets/styles/ListingsTableStyle";
 import {EnhancedTableHead} from "./EnhancedTableHead/EnhancedTableHead";
 import {getSorting, stableSort} from "../../../utils/tableUtils";
@@ -70,15 +69,6 @@ class Listings extends React.Component {
         this.setState({rowsPerPage: event.target.value});
     };
 
-    onApprove = () => {
-        const toApprove = this.props.data
-            .filter(item => (
-                this.state.selected.includes(item.id)))
-            .map(item => {
-                return Object.assign({}, item, {status: "approved"});
-            });
-        this.props.onApprove(toApprove);
-    };
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
@@ -158,6 +148,4 @@ Listings.propTypes = {
 };
 
 
-export default compose(
-    withStyles(listingTableStyles)
-)(Listings);
+export default withStyles(listingTableStyles)(Listings);

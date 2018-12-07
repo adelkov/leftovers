@@ -13,7 +13,7 @@ export class EnhancedTableHead extends React.Component {
     };
 
     render() {
-        const { onSelectAllClick, order, orderBy, numSelected, rowCount, rows } = this.props;
+        const {onSelectAllClick, order, orderBy, numSelected, rowCount, rows} = this.props;
 
         return (
             <TableHead>
@@ -49,6 +49,12 @@ export class EnhancedTableHead extends React.Component {
                             </TableCell>
                         );
                     }, this)}
+                    <TableCell
+                        numeric={false}
+                        padding="default"
+                    >
+                        Delete
+                    </TableCell>
                 </TableRow>
             </TableHead>
         );

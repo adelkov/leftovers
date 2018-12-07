@@ -10,9 +10,12 @@ import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import {compose} from "redux";
 import {listingTableStyles} from "../../../assets/styles/ListingsTableStyle";
+import {getSorting, stableSort} from "../../../utils/tableUtils";
+import DeleteIcon from '@material-ui/icons/Delete';
+import Chip from "@material-ui/core/Chip/Chip";
 import EnhancedTableToolbar from "./EnhancedTableToolbar/EnhancedTableToolbar";
 import {EnhancedTableHead} from "./EnhancedTableHead/EnhancedTableHead";
-import {getSorting, stableSort} from "../../../utils/tableUtils";
+import Fab from "@material-ui/core/Fab/Fab";
 
 
 class Listings extends React.Component {
@@ -22,7 +25,7 @@ class Listings extends React.Component {
         orderBy: '',
         selected: [],
         page: 0,
-        rowsPerPage: 5,
+        rowsPerPage: 5
     };
 
 
@@ -112,21 +115,48 @@ class Listings extends React.Component {
                                     return (
                                         <TableRow
                                             hover
-                                            onClick={event => this.handleClick(event, n.id)}
                                             role="checkbox"
                                             aria-checked={isSelected}
                                             tabIndex={-1}
                                             key={n.id}
                                             selected={isSelected}
                                         >
-                                            <TableCell padding="checkbox">
+                                            <TableCell
+                                                onClick={event => this.handleClick(event, n.id)}
+                                                padding="checkbox">
                                                 <Checkbox checked={isSelected}/>
                                             </TableCell>
-                                            {rows.map(item =>
-                                                (<TableCell key={item.id}>{n[item.id]}</TableCell>)
+                                            {rows.map(item => {
+                                                if (n[item.id]==="approved") {
+                                                    return (
+                                                        <TableCell key={item.id}>
+                                                        <Chip
+                                                            label="Approved"
+                                                            color="primary"
+                                                            className={classes.chip}
+                                                            variant="outlined" />
+                                                        </TableCell>
+                                                    )
+                                                } else if (n[item.id]==="pending") {
+                                                    return (
+                                                        <TableCell key={item.id}>
+                                                        <Chip
+                                                            label="Pending"
+                                                            color="secondary"
+                                                            className={classes.chip}
+                                                            variant="default" />
+                                                        </TableCell>
+                                                    )
+                                                }
+
+                                                return (<TableCell key={item.id}>{n[item.id]}</TableCell>)}
                                             )}
-                                            <TableCell onClick={()=>onDelete(n.id)}>
-                                                KukaIkon
+                                            <TableCell
+                                                onClick={()=>onDelete(n.id)}
+                                            >
+                                                <Fab aria-label="Delete" className={classes.fab}>
+                                                    <DeleteIcon />
+                                                </Fab>
                                             </TableCell>
                                         </TableRow>
                                     );

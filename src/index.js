@@ -3,12 +3,9 @@ import ReactDOM from 'react-dom';
 import {Provider} from "react-redux";
 import 'react-notifications/lib/notifications.css';
 import './assets/styles/index.css'
-
-
 import {configStore} from "./store/ConfigStore";
 import App from "./components/App";
 import {NotificationContainer} from "react-notifications";
-import LeftoverMap from "./components/views/Admin/Map/LeftoverMap";
 
 
 const store = configStore();

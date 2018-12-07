@@ -3,30 +3,26 @@ import GoogleMapCustom from "../../../common/GoogleMap/GoogleMapCustom";
 import CheckList from "../../../common/CheckList/CheckList";
 import withAsyncData from "../../../../HOCs/withAsyncData";
 import getLatLngFromAddress from "../../../../utils/mapUtil";
+import Grid from "@material-ui/core/Grid/Grid";
+import Paper from "@material-ui/core/Paper/Paper";
+import {compose} from "redux";
+import {withStyles} from "@material-ui/core";
+import GridStyle from "../../../../assets/styles/GridStyle";
+import MapContainerStyle from "../../../../assets/styles/MapContainerStyle";
+
 
 class LeftoverMap extends React.Component {
 
     state = {
-        leftovers: [
-            {id: 1, name: "yes", lat: 47.507354, lng: 19.044378299999998},
-            {id: 2, name: "no", lat: 47.502354, lng: 19.044478299999998},
-            {id: 3, name: "ba", lat: 47.503354, lng: 19.044378499999998},
-        ],
-        checked: [
-        ],
+        leftovers: [],
     };
 
 
     componentDidMount() {
-
         const leftoverEdit = this.props.leftovers
-            .slice(0, 5)
             .map(item => {
                 item.checked = false;
                 item.name = item.food;
-                return item;
-            })
-            .map(item => {
                 getLatLngFromAddress(item.location)
                     .then(res => {
                         item.lat = res.lat;
@@ -34,7 +30,6 @@ class LeftoverMap extends React.Component {
                     });
                 return item;
             });
-
         this.setState({
             leftovers: leftoverEdit
         })
@@ -58,27 +53,34 @@ class LeftoverMap extends React.Component {
     );
 
     render() {
+        const {classes} = this.props;
         const {leftovers} = this.state;
         return (
-            <>
-                <CheckList
-                    handleSelection={this.handleSelection}
-                    leftovers={leftovers}
-                />
-                <GoogleMapCustom
-                    markers={this.filterChecked(leftovers)}
-                    loadingElement={<div style={{height: `100%`}}/>}
-                    containerElement={<div style={{height: `400px`, width: `100%`}}/>}
-                    mapElement={<div style={{height: `100%`, width: '100%'}}/>}
-                />
-            </>
+                <Grid container spacing={24}>
+                    <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
+                        <Paper className={classes.paper}>
+                            <CheckList
+                                handleSelection={this.handleSelection}
+                                leftovers={leftovers}
+                            />
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={12} lg={8} xl={8}>
+                        <Paper className={classes.paperMap}>
+                            <GoogleMapCustom
+                                markers={this.filterChecked(leftovers)}
+                                loadingElement={<div style={{height: `100%`}}/>}
+                                containerElement={<div style={MapContainerStyle}/>}
+                                mapElement={<div style={{height: `100%`, width: '100%'}}/>}
+                            />
+                        </Paper>
+                    </Grid>
+                </Grid>
         );
     }
 }
 
-export default withAsyncData(LeftoverMap);
-
-// geocodeByAddress("Budapest")
-//     .then(results => getLatLng(results[0]))
-//     .then(latLng => console.log('Success', latLng))
-//     .catch(error => console.error('Error', error));
+export default compose(
+    withAsyncData,
+    withStyles(GridStyle)
+)(LeftoverMap);

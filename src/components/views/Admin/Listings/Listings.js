@@ -13,7 +13,7 @@ const Listings = (props) => {
         {id: 'food', numeric: false, disablePadding: true, label: 'Food offered'},
         {id: 'location', numeric: false, disablePadding: false, label: 'Location'},
         {id: 'status', numeric: false, disablePadding: false, label: 'Status'},
-        {id: 'userId', numeric: true, disablePadding: false, label: 'User ID'},
+        {id: 'account', numeric: true, disablePadding: false, label: 'User e-mail'},
     ];
 
     return (

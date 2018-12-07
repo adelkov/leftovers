@@ -54,7 +54,7 @@ function Home(props) {
                                         shelter.
                                     </Typography>
                                     <Link to="/login">
-                                        <Button variant="contained" size="large">
+                                        <Button variant="contained" color="primary" size="large">
                                             Sign in
                                         </Button>
                                     </Link>

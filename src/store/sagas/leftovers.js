@@ -4,13 +4,11 @@ import * as api from '../effects/api'
 import {
     approveListingsFailure, approveListingsSuccess,
     createLeftoverFailure,
-    createLeftoverSuccess,
+    createLeftoverSuccess, deleteLeftoverFailure, deleteLeftoverSuccess,
     fetchLeftoversFailure,
     fetchLeftoversSuccess, fetchMyLeftoversFailure, fetchMyLeftoversSuccess
 } from "../actions/leftovers";
 import {notify, types} from "../effects/notifications"
-import {deleteAddressFailure, deleteAddressSuccess} from "../actions/addresses";
-
 
 
 function* fetchLeftovers() {
@@ -27,7 +25,6 @@ function* createLeftover(action) {
     try {
         let leftover = action.leftover;
         const {data} = yield api.createLeftover(leftover);
-        notify(types.success, "Leftover listed");
         yield put(createLeftoverSuccess(data));
 
     } catch (e) {
@@ -49,7 +46,6 @@ function* fetchMyLeftovers() {
 function* approveListings(action) {
     try {
         const {data} = yield  api.approveListings(action.listing);
-        notify(types.success, "Leftover approved");
         yield put(approveListingsSuccess(data))
     } catch (error) {
         notify(types.error, error.message);
@@ -60,9 +56,10 @@ function* approveListings(action) {
 function* deleteLeftover(action) {
     try {
         yield api.deleteLeftover(action.id);
-        notify(types.info, "Leftover deleted")
+        yield put(deleteLeftoverSuccess(action.id))
     } catch (e) {
         notify(types.error, e.message);
+        yield put(deleteLeftoverFailure(e))
     }
 }
 

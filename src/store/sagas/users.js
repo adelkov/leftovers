@@ -33,7 +33,7 @@ function* logoutUser() {
     try {
         yield api.logoutUser();
         clearUser();
-        history.push("/login");
+        history.push("/home");
         notify("success", "You have logged out.");
         yield put(logoutUserSuccess());
     } catch (e) {

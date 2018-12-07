@@ -65,4 +65,14 @@ export const deleteLeftover = id => ({
     id
 });
 
+export const deleteLeftoverSuccess = id => ({
+    type: actions.DELETE_LEFTOVER_SUCCESS,
+    id
+});
+
+export const deleteLeftoverFailure = error => ({
+    type: actions.DELETE_LEFTOVER_FAILURE,
+    error
+});
+
 

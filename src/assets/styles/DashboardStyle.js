@@ -13,6 +13,7 @@ export const dashboardStyle = theme => ({
         ...theme.mixins.toolbar,
     },
     appBar: {
+        backgroundColor:"rgba(0,0,0,0.8)",
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,

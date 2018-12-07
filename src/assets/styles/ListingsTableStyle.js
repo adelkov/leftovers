@@ -8,4 +8,10 @@ export const listingTableStyles = theme => ({
     tableWrapper: {
         overflowX: 'auto',
     },
+    chip: {
+        margin: theme.spacing.unit,
+    },
+    fab: {
+        margin: theme.spacing.unit,
+    },
 });
