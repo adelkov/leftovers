@@ -9,6 +9,7 @@ import {
     fetchLeftoversSuccess, fetchMyLeftoversFailure, fetchMyLeftoversSuccess
 } from "../actions/leftovers";
 import {notify, types} from "../effects/notifications"
+import {deleteAddressFailure, deleteAddressSuccess} from "../actions/addresses";
 
 
 
@@ -56,10 +57,20 @@ function* approveListings(action) {
     }
 }
 
+function* deleteLeftover(action) {
+    try {
+        yield api.deleteLeftover(action.id);
+        notify(types.info, "Leftover deleted")
+    } catch (e) {
+        notify(types.error, e.message);
+    }
+}
+
 
 export function* leftoversWatcher() {
     yield takeEvery(actions.FETCH_LEFTOVERS, fetchLeftovers);
     yield takeEvery(actions.CREATE_LEFTOVER, createLeftover);
     yield takeEvery(actions.FETCH_MY_LEFTOVERS, fetchMyLeftovers);
     yield takeEvery(actions.APPROVE_LISTINGS, approveListings);
+    yield takeEvery(actions.DELETE_LEFTOVER, deleteLeftover);
 }

@@ -1,6 +1,5 @@
 import ListingsContainer from "../components/views/Admin/Listings/ListingsContainer";
 import UsersContainer from "../components/views/Admin/Users/UsersContainer";
-import React from "react";
 import LeftoverMapContainer from "../components/views/Admin/Map/LeftoverMapContainer";
 
 const adminRoutes = [

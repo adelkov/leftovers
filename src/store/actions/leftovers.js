@@ -60,4 +60,9 @@ export const approveListingsSuccess = leftover => ({
     leftover
 });
 
+export const deleteLeftover = id => ({
+    type: actions.DELETE_LEFTOVER,
+    id
+});
+
 

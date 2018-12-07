@@ -8,7 +8,7 @@ import './assets/styles/index.css'
 import {configStore} from "./store/ConfigStore";
 import App from "./components/App";
 import {NotificationContainer} from "react-notifications";
-import LeftoverMapContainer from "./components/views/Admin/Map/LeftoverMapContainer";
+import LeftoverMap from "./components/views/Admin/Map/LeftoverMap";
 
 
 const store = configStore();

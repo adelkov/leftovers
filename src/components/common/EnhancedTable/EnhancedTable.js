@@ -85,7 +85,7 @@ class Listings extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     render() {
-        const {classes, rows, data} = this.props;
+        const {classes, rows, data, onDelete} = this.props;
         const {order, orderBy, selected, rowsPerPage, page } = this.state;
 
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
@@ -125,6 +125,9 @@ class Listings extends React.Component {
                                             {rows.map(item =>
                                                 (<TableCell key={item.id}>{n[item.id]}</TableCell>)
                                             )}
+                                            <TableCell onClick={()=>onDelete(n.id)}>
+                                                KukaIkon
+                                            </TableCell>
                                         </TableRow>
                                     );
                                 })}

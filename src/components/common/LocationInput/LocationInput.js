@@ -1,10 +1,5 @@
 import React from 'react';
-import PlacesAutocomplete, {
-    geocodeByAddress,
-    getLatLng,
-} from 'react-places-autocomplete';
-import {compose} from "redux";
-import {withScriptjs} from "react-google-maps";
+import PlacesAutocomplete from 'react-places-autocomplete';
 import TextField from "@material-ui/core/TextField/TextField";
 import Paper from "@material-ui/core/Paper/Paper";
 import {withFormsy} from "formsy-react";

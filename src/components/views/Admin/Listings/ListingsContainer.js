@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import Listings from "./Listings";
-import {approveListings, fetchLeftovers} from "../../../../store/actions/leftovers";
+import {approveListings, deleteLeftover, fetchLeftovers} from "../../../../store/actions/leftovers";
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -9,7 +9,8 @@ const mapDispatchToProps = (dispatch) => {
             listings.forEach(listing => {
                 dispatch(approveListings(listing))
             })
-        }
+        },
+        onDeleteLeftover: id => dispatch(deleteLeftover(id))
     }
 };
 

@@ -21,6 +21,7 @@ const Listings = (props) => {
             rows={rows}
             data={props.leftovers}
             onApprove={props.onApprove}
+            onDelete={props.onDeleteLeftover}
         />
     );
 };

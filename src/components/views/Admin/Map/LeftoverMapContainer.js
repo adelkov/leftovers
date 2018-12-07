@@ -1,30 +1,21 @@
-import React from "react";
+import {connect} from 'react-redux';
 import LeftoverMap from "./LeftoverMap";
-import {geocodeByAddress, getLatLng} from "react-places-autocomplete";
+import {fetchLeftovers} from "../../../../store/actions/leftovers";
 
-class LeftoverMapContainer extends React.Component {
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchData: () => (dispatch(fetchLeftovers()))
+    };
+};
 
-    leftovers = [
-        {uid: 1, lat: 47.507354, lon: 19.044378299999998},
-        {uid: 2, lat: 47.502354, lon: 19.044478299999998},
-        {uid: 3, lat: 47.503354, lon: 19.044378499999998},
-    ];
+const mapStateToProps = (state) => {
+    return {
+        leftovers: state.leftovers.leftovers,
+        loading: state.leftovers.loading,
+        error: state.leftovers.error,
+    };
+};
 
-    render() {
-
-        geocodeByAddress("Budapest")
-            .then(results => getLatLng(results[0]))
-            .then(latLng => console.log('Success', latLng))
-            .catch(error => console.error('Error', error));
-        return (
-            <LeftoverMap
-                leftovers={this.leftovers}
-                loadingElement={<div style={{height: `100%`}}/>}
-                containerElement={<div style={{height: `600px`, width: `600px`}}/>}
-                mapElement={<div style={{height: `100%`}}/>}
-            />
-        );
-    }
-}
-
-export default LeftoverMapContainer;
+export default connect(
+    mapStateToProps, mapDispatchToProps
+)(LeftoverMap);

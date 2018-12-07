@@ -90,3 +90,12 @@ export const isAuthenticated = () => (
         params: {access_token: storage.getToken()}
     })
 );
+
+
+export const deleteLeftover = id => (
+    axios.delete(urls.leftovers + "/" + id, {
+        params: {
+            access_token: storage.getToken()
+        }
+    })
+);
