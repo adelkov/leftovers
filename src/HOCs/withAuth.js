@@ -11,17 +11,17 @@ const withAuth = (WrappedComponent) => {
             status: ""
         };
 
-        componentWillMount = () => {
-            api.isAuthenticated()
-                .then(response => {
-                    this.setState({
-                        status: response.status
-                    })
+        componentWillMount = async () => {
+            try {
+                const response = await api.isAuthenticated()
+                this.setState({
+                    status: response.status
                 })
-                .catch(() => {
-                    history.push("/login");
-                    notify(types.error, "Authentication failed.");
-                })
+            } catch (e) {
+                history.push("/login");
+                notify(types.error, "Authentication failed.");
+            }
+
         };
 
         render() {
